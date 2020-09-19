@@ -6,6 +6,7 @@ function App() {
   const [ users, setUsers ] = useState("");  
 
   useEffect(() => {
+    //fetch("http://localhost:4000/users")
     fetch("https://proyectofinaldaw-api.herokuapp.com/users")
       .then(res => res.text())
       .then(res => setUsers(res))

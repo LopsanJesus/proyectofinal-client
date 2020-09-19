@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [ users, setUsers ] = useState("");  
+
+  useEffect(() => {
+    fetch("https://proyectofinaldaw-api.herokuapp.com/users")
+      .then(res => res.text())
+      .then(res => setUsers(res))
+      .catch(() => console.log("Error en la API"))
+  });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to riloud.
+          Users:
+          { users }
         </p>
         <a
           className="App-link"

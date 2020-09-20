@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     //fetch("http://localhost:4000/users")
-    fetch("https://proyectofinaldaw-api.herokuapp.com/users")
+    fetch("https://treelang-api.herokuapp.com/users")
       .then(res => res.text())
       .then(res => setUsers(res))
       .catch(() => console.log("Error en la API"))

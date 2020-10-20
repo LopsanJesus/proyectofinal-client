@@ -7,11 +7,13 @@ import { ApolloProvider } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client';
 
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import config from './config';
+
 // import { gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  //uri: 'http://localhost:4000',
-  uri: 'https://treelang-api.herokuapp.com/graphql',
+  uri: process.env.REACT_APP_API_URL,
+  //uri: 'https://treelang-api.herokuapp.com/graphql',
   cache: new InMemoryCache()
 });
 
@@ -22,6 +24,7 @@ const ALL_STUDENTS = gql`
       firstName
       email
       hobbies {
+        id
         title
       }
     }
@@ -32,10 +35,10 @@ function GetAllStudents() {
   const { loading, error, data } = useQuery(ALL_STUDENTS);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p>Error!</p>;
 
   return data.getAllStudents.map(({ id, firstName, email, hobbies }) => {
-    var hobby = hobbies.map(h => <li>{h.title}</li>);
+    var hobby = hobbies.map(h => <li key={h.id}>{h.id}: {h.title}</li>);
     return (
       <div key={id}>
         <p>
@@ -68,7 +71,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <header className="App-header">
-          <h1>Treelang</h1>
+          <h1 style={{color:config.titleColor}}> {config.title} </h1>
           <p>
             Users:
           </p>

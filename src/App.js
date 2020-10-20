@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { render } from 'react-dom';
-import logo from './logo.svg';
+import React from 'react';
+//import { render } from 'react-dom';
+//import logo from './logo.svg';
 import './App.css';
 import { ApolloProvider } from '@apollo/client';
 

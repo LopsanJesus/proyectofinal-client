@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { gql } from '@apollo/client';
+//import { ApolloClient, InMemoryCache } from '@apollo/client';
+//import { gql } from '@apollo/client';
 
 // const client = ...
 

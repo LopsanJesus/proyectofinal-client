@@ -9,7 +9,7 @@ function About({ charactersLength, selectCharacters, characters }) {
   //return <p>This app belongs to Jesus Lopez</p>;
   useEffect(() => {
     selectCharacters();
-  }, []);
+  }, [selectCharacters]);
 
   console.log("Characters: ", characters);
   console.log("Characters length: ", charactersLength);

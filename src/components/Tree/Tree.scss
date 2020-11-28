@@ -1,0 +1,22 @@
+.tree {
+  .card-body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .tree-icon {
+    max-width: 60px;
+  }
+
+  .title-and-flag {
+    width: 100%;
+  }
+
+  .country-flag {
+    width: 3em;
+    height: 3em;
+    border-radius: 3em;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+}

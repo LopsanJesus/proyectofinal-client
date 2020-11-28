@@ -1,20 +1,17 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-import config from "./config";
 import { setContext } from "@apollo/client/link/context";
 import AllUsers from "./AllUsers";
-import About from "./About";
-import Home from "./Home";
+import About from "./components/about";
+import Home from "./components/Home";
 import Profile from "./components/profile";
+import TopBar from "./components/TopBar";
+import TreeList from "./components/TreeList";
+import Footer from "./components/Footer";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,
@@ -47,45 +44,37 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <h1 style={{ color: config.titleColor }}> {config.title} </h1>
         <Router>
           <div className="router">
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/users">Users</Link>
-                </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-              </ul>
-            </nav>
+            <TopBar />
 
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-            <Switch>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/users">
-                <AllUsers />
-                <br></br>
-                <br></br>
-                <Link to="/" className="back-home">Back home</Link>
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
+            <div className="content">
+              <Switch>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/users">
+                  <AllUsers />
+                  <br></br>
+                  <br></br>
+                  <Link to="/" className="back-home">
+                    Back home
+                  </Link>
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/my-trees">
+                  <TreeList />
+                </Route>
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch>
+            </div>
+            <Footer />
           </div>
         </Router>
       </div>

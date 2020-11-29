@@ -7,7 +7,6 @@ const initialState = {
 const userInfo = (state = initialState, action) => {
     switch (action.type) {
         case SAVE_USER_INFO:
-            console.log(action);
             return { ...state, user: action.user }
         default:
             return state

@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.scss';
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { connect } from "react-redux";
 
 import Form from "react-bootstrap/Form";
@@ -25,9 +25,9 @@ function funcLogin(prueba) {
   prueba({ variables: { email: "llizaz@media.com", password: "jesuslo" } });
 }
 
-const LoginForm = ({ saveUserInfo }) => {
-  //const [isL = 
+const LoginForm = ({ match, saveUserInfo }) => {
   let history = useHistory();
+  const params = useParams();
 
   const [loginMutation, { loading, error }] = useMutation(LOGIN_USER_QUERY, {
     onError(a) {
@@ -35,9 +35,8 @@ const LoginForm = ({ saveUserInfo }) => {
     },
     onCompleted(result) {
       localStorage.setItem("auth-token", result.login.token);
-      console.log("Usuario logado correctamente", result.login.user);
       saveUserInfo(result.login.user);
-      history.push('/my-forest');
+      history.push('/' + params.redirect);
     },
   });
 

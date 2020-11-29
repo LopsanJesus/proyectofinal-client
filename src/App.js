@@ -53,17 +53,17 @@ function App() {
 
             <div className="content">
               <Switch>
-                <Route exact path="/my-forest">
+                <ProtectedRoute exact path="/my-forest">
                   <TreeList />
-                </Route>
+                </ProtectedRoute>
                 <ProtectedRoute exact path="/profile">
                   <Profile />
                 </ProtectedRoute>
-                <Route exact path="/login">
-                  <LoginForm />
-                </Route>
-                <Route exact path="/about">
+                <ProtectedRoute exact path="/about">
                   <About />
+                </ProtectedRoute>
+                <Route path="/login/:redirect">
+                  <LoginForm />
                 </Route>
                 <Route exact path="/users">
                   <AllUsers />
@@ -74,6 +74,7 @@ function App() {
                 <Route exact path="/">
                   <Home />
                 </Route>
+                <Redirect to="/" />
               </Switch>
             </div>
             <Footer />

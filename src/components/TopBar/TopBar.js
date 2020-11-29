@@ -8,7 +8,7 @@ const TopBar = () => {
   return (
     <Navbar bg="dark" expand="sm" sticky="top">
       <Navbar.Brand>
-        <Link to="/my-trees">{config.title}</Link>
+        <Link to="/my-forest">{config.title}</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

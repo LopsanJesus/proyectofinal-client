@@ -1,15 +1,18 @@
 import React from "react";
+import { Redirect } from 'react-router-dom';
 import "./App.scss";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import AllUsers from "./AllUsers";
-import About from "./components/about";
+import AllUsers from "./components/UserList";
+import About from "./components/About";
 import Home from "./components/Home";
-import Profile from "./components/profile";
+import Profile from "./components/Profile";
 import TopBar from "./components/TopBar";
 import TreeList from "./components/TreeList";
 import Footer from "./components/Footer";
+import LoginForm from "./components/LoginForm";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -48,28 +51,27 @@ function App() {
           <div className="router">
             <TopBar />
 
-            {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
             <div className="content">
               <Switch>
-                <Route path="/about">
+                <Route exact path="/my-forest">
+                  <TreeList />
+                </Route>
+                <ProtectedRoute exact path="/profile">
+                  <Profile />
+                </ProtectedRoute>
+                <Route exact path="/login">
+                  <LoginForm />
+                </Route>
+                <Route exact path="/about">
                   <About />
                 </Route>
-                <Route path="/users">
+                <Route exact path="/users">
                   <AllUsers />
-                  <br></br>
-                  <br></br>
                   <Link to="/" className="back-home">
                     Back home
                   </Link>
                 </Route>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/my-trees">
-                  <TreeList />
-                </Route>
-                <Route path="/">
+                <Route exact path="/">
                   <Home />
                 </Route>
               </Switch>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
+import './UserList.scss';
 
 const ALL_USERS = gql`
   {
@@ -17,18 +18,8 @@ const ALL_USERS = gql`
   }
 `;
 
-const LOGIN_USER = gql`
-  mutation loginMutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        name
-      }
-    }
-  }
-`;
 
-function AllUsers() {
+function UserList() {
   const [isLogged, setIsLogged] = useState(0);
 
   const setIsLoggedState = (val) => {
@@ -43,8 +34,8 @@ function AllUsers() {
           <AllUsersList />
         </>
       ) : (
-        <LoginControl func={setIsLoggedState} />
-      )}
+          <div>Login</div>
+        )}
     </div>
   );
 }
@@ -80,27 +71,6 @@ function GetMeInfo() {
   return <strong>You're logged as {data.getMe.name}</strong>;
 }
 
-function LoginControl(props) {
-  const [loginMutation, { loading, error }] = useMutation(LOGIN_USER, {
-    onError(a) {
-      console.log(a);
-    },
-    onCompleted(result) {
-      localStorage.setItem("token", result.login.token);
-      props.func(true);
-    },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  return (
-    <div>
-      <p>User: llizaz@media.com / password: jesuslo</p>
-      <button onClick={() => funcLogin(loginMutation)}>Login</button>
-    </div>
-  );
-}
 
 function LogoutControl(props) {
   return (
@@ -115,8 +85,5 @@ function LogoutControl(props) {
   );
 }
 
-function funcLogin(prueba) {
-  prueba({ variables: { email: "llizaz@media.com", password: "jesuslo" } });
-}
 
-export default AllUsers;
+export default UserList;

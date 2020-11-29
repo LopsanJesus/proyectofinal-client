@@ -13,6 +13,7 @@ import TreeList from "./components/TreeList";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Logout from "./components/Logout";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -62,15 +63,18 @@ function App() {
                 <ProtectedRoute exact path="/about">
                   <About />
                 </ProtectedRoute>
-                <Route path="/login/:redirect">
+                <ProtectedRoute path="/login/:redirect?">
                   <LoginForm />
-                </Route>
+                </ProtectedRoute>
                 <Route exact path="/users">
                   <AllUsers />
                   <Link to="/" className="back-home">
                     Back home
                   </Link>
                 </Route>
+                <ProtectedRoute exact path="/logout">
+                  <Logout />
+                </ProtectedRoute>
                 <Route exact path="/">
                   <Home />
                 </Route>

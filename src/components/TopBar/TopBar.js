@@ -16,6 +16,9 @@ const TopBar = () => {
           <Nav.Link>
             <Link to="/profile">Profile</Link>
           </Nav.Link>
+          <Nav.Link>
+            <Link to="/logout">Logout</Link>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

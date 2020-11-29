@@ -1,31 +1,21 @@
 import React from 'react';
 import './LoginForm.scss';
-import { useQuery, useMutation, gql } from "@apollo/client";
-import { useHistory, useParams } from 'react-router-dom';
+import { useQuery, useMutation } from "@apollo/client";
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { connect } from "react-redux";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button"
 import { saveUserInfo } from '../../actions/userInfo';
 
-
-const LOGIN_USER_QUERY = gql`
-  mutation loginMutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        name
-        email
-      }
-    }
-  }
-`;
+import LOGIN_USER_QUERY from '../../queries/login'
 
 function funcLogin(prueba) {
   prueba({ variables: { email: "llizaz@media.com", password: "jesuslo" } });
 }
 
-const LoginForm = ({ match, saveUserInfo }) => {
+const LoginForm = ({ saveUserInfo }) => {
+
   let history = useHistory();
   const params = useParams();
 
@@ -44,6 +34,9 @@ const LoginForm = ({ match, saveUserInfo }) => {
     event.preventDefault();
     funcLogin(loginMutation);
   };
+
+  if (localStorage.getItem("auth-token"))
+    return <Redirect to="/my-forest" />
 
   return <div className="LoginForm">
     <Form noValidate /*validated={validated}*/ onSubmit={HandleSubmit}>

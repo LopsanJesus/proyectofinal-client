@@ -1,0 +1,9 @@
+.branch {
+  text-align: left;
+  margin-bottom: 10px;
+
+  &:hover {
+    border: 1px solid black;
+    cursor: pointer;
+  }
+}

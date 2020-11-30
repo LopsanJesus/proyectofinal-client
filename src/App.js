@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import "./App.scss";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
@@ -7,8 +7,10 @@ import { setContext } from "@apollo/client/link/context";
 import About from "./components/About";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import Branch from "./components/Branch";
 import TopBar from "./components/TopBar";
 import TreeList from "./components/TreeList";
+import Tree from "./components/Tree";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -56,6 +58,12 @@ function App() {
               <Switch>
                 <ProtectedRoute exact path="/my-forest">
                   <TreeList />
+                </ProtectedRoute>
+                <ProtectedRoute path="/tree/:id">
+                  <Tree />
+                </ProtectedRoute>
+                <ProtectedRoute path="/branch/:id">
+                  <Branch />
                 </ProtectedRoute>
                 <ProtectedRoute exact path="/profile">
                   <Profile />

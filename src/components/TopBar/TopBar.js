@@ -4,12 +4,12 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import config from "../../config";
 import { NavDropdown } from "react-bootstrap";
-import './TopBar.scss';
+import "./TopBar.scss";
 
 const TopBar = () => {
   const src = "../../../full-apple.png";
   return (
-    <Navbar bg="dark" variant="light" expand="sm" sticky="top">
+    <Navbar bg="light" variant="light" expand="sm" sticky="top">
       <Navbar.Brand>
         <Link to="/">{config.title}</Link>
       </Navbar.Brand>
@@ -24,14 +24,14 @@ const TopBar = () => {
           </Nav.Link>
         </Nav>
         <Nav id="right-nav">
-          <NavDropdown title={
-            <span>
-              <img className="profile-image"
-                src={src}
-                alt="User Pic"
-              />
-            </span>
-          } id="collasible-nav-dropdown">
+          <NavDropdown
+            title={
+              <span>
+                <img className="profile-image" src={src} alt="User Pic" />
+              </span>
+            }
+            id="collasible-nav-dropdown"
+          >
             <NavDropdown.Item className="mr-auto">
               <Link to="/profile">Profile</Link>
             </NavDropdown.Item>

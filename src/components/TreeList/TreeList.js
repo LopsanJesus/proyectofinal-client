@@ -1,8 +1,12 @@
 import React from "react";
 
-import CardColumns from "react-bootstrap/CardColumns";
+import Container from "react-bootstrap/Container";
 
-import Tree from "../Tree";
+import TreeCard from "../TreeCard";
+import CreateTreeButton from "../CreateTreeButton";
+
+import { GET_MY_FOREST } from "../../queries/trees";
+import { useQuery } from "@apollo/client";
 
 import "./TreeList.scss";
 
@@ -34,14 +38,17 @@ const treeList = [
 ];
 
 const TreeList = () => {
+  const { loading, error, data } = useQuery(GET_MY_FOREST);
+
+  if (loading) return <div>Loading...</div>
+
   return (
-    <div className="TreeList">
-      <CardColumns>
-        {treeList.map((tree) => {
-          return <Tree key={tree.id} tree={tree} />;
-        })}
-      </CardColumns>
-    </div>
+    <Container fluid className="TreeList">
+      {data.getMyForest.map((tree) => {
+        return <TreeCard key={tree.id} tree={tree} />;
+      })}
+      <CreateTreeButton />
+    </Container>
   );
 };
 

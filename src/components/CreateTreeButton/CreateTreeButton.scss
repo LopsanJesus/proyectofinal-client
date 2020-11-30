@@ -1,0 +1,14 @@
+.createTreeButton {
+  min-width: 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .plusIcon {
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid black;
+  }
+}

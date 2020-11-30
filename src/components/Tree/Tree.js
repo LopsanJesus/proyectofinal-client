@@ -1,36 +1,19 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-import ReactCountryFlag from "react-country-flag";
+import BranchList from "../BranchList";
 
-import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 
 import "./Tree.scss";
 
-const Tree = ({ tree }) => {
+const Tree = () => {
+  const params = useParams();
   return (
-    <Card className="tree">
-      <Card.Body>
-        <div className="tree-icon">
-          <Card.Img variant="top" src="./tree-icon.png" />
-        </div>
-        <div className="title-and-flag">
-          <Card.Title>{tree.name}</Card.Title>
-          <div className="country-flag">
-            <ReactCountryFlag
-              countryCode={tree.language}
-              svg
-              style={{
-                width: "3em",
-                height: "3em",
-              }}
-            />
-          </div>
-        </div>
-      </Card.Body>
-      <Card.Footer>
-        <small className="text-muted">Creado por: {tree.owner}</small>
-      </Card.Footer>
-    </Card>
+    <Container fluid className="Tree">
+      <h3>Tree with id {params.id}</h3>
+      <BranchList />
+    </Container>
   );
 };
 

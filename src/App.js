@@ -15,7 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,

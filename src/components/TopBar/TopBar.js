@@ -13,12 +13,10 @@ const TopBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link>
-            <Link to="/profile">Profile</Link>
-          </Nav.Link>
-          <Nav.Link>
-            <Link to="/logout">Logout</Link>
-          </Nav.Link>
+          <Link to="/profile">Profile</Link>
+        </Nav>
+        <Nav className="mr-auto">
+          <Link to="/logout">Logout</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

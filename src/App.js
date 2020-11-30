@@ -4,7 +4,6 @@ import "./App.scss";
 import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import AllUsers from "./components/UserList";
 import About from "./components/About";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
@@ -14,6 +13,7 @@ import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
+import NotFound from "./components/NotFound";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("auth-token");
   //const token = "eyJhbGciOiJIUzI1NiIsInR5cI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJsbGl6YXpAbWVkaWEuY29tIiwiaWF0IjoxNjA1NzUwNjQ5LCJleHAiOjE2MDU4MzcwNDl9.83kcHbV-TcruZ3UFuEiXtl9jHwrTfOCK-uB7TY120wI";
   // return the headers to the context so httpLink can read them
   return {
@@ -63,14 +63,8 @@ function App() {
                 <ProtectedRoute exact path="/about">
                   <About />
                 </ProtectedRoute>
-                <ProtectedRoute path="/login/:redirect?">
+                <Route path="/login/:redirect?">
                   <LoginForm />
-                </ProtectedRoute>
-                <Route exact path="/users">
-                  <AllUsers />
-                  <Link to="/" className="back-home">
-                    Back home
-                  </Link>
                 </Route>
                 <ProtectedRoute exact path="/logout">
                   <Logout />
@@ -78,6 +72,7 @@ function App() {
                 <Route exact path="/">
                   <Home />
                 </Route>
+                <NotFound />
                 <Redirect to="/" />
               </Switch>
             </div>

@@ -38,7 +38,7 @@ const TreeList = () => {
     <div className="TreeList">
       <CardColumns>
         {treeList.map((tree) => {
-          return <Tree key tree={tree} />;
+          return <Tree key={tree.id} tree={tree} />;
         })}
       </CardColumns>
     </div>

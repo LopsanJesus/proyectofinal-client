@@ -11,9 +11,10 @@ import { saveUserInfo } from '../../actions/userInfo';
 import { LOGIN_USER_QUERY } from '../../queries/login'
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
+import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
 
 const LoginForm = ({ saveUserInfo }) => {
-
   let history = useHistory();
   const params = useParams();
 
@@ -56,47 +57,56 @@ const LoginForm = ({ saveUserInfo }) => {
   if (localStorage.getItem("auth-token"))
     return <Redirect to="/my-forest" />
 
-  return <div className="LoginForm">
-    <Form noValidate validated={validated} onSubmit={HandleSubmit}>
-      {formError && <Alert variant="danger">{formError}</Alert>}
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Correo electrónico</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Introduzca su email"
-          ref={emailRef}
-          required />
-        <Form.Control.Feedback type="invalid">
-          Por favor introduzca un email válido.
+  return (
+    <Container
+      as={Col}
+      md={{ span: 8, offset: 2 }}
+      lg={{ span: 4, offset: 4 }}
+    >
+      <Form noValidate
+        validated={validated}
+        onSubmit={HandleSubmit}
+      >
+        {formError && <Alert variant="danger">{formError}</Alert>}
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Correo electrónico</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Introduzca su email"
+            ref={emailRef}
+            required />
+          <Form.Control.Feedback type="invalid">
+            Por favor introduzca un email válido.
         </Form.Control.Feedback>
-      </Form.Group>
+        </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Contraseña</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Contraseña"
-          ref={passwordRef}
-          required />
-        <Form.Control.Feedback type="invalid">
-          Por favor introduzca su contraseña.
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Contraseña"
+            ref={passwordRef}
+            required />
+          <Form.Control.Feedback type="invalid">
+            Por favor introduzca su contraseña.
         </Form.Control.Feedback>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        {
-          loading ?
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-            />
-            : <div>Acceder</div>
-        }
-      </Button>
-    </Form>
-  </div >;
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          {
+            loading ?
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              : <div>Login</div>
+          }
+        </Button>
+      </Form>
+    </Container>
+  );
 };
 
 const mapDispatchToProps = (dispatch) => ({

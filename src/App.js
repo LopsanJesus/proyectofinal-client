@@ -60,9 +60,9 @@ function App() {
                 <ProtectedRoute exact path="/profile">
                   <Profile />
                 </ProtectedRoute>
-                <ProtectedRoute exact path="/about">
+                <Route exact path="/about">
                   <About />
-                </ProtectedRoute>
+                </Route>
                 <Route path="/login/:redirect?">
                   <LoginForm />
                 </Route>

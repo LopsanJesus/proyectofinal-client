@@ -44,12 +44,19 @@ const RegisterForm = () => {
 
     const form = event.currentTarget;
 
+    console.log(form);
+    console.log(confirmPasswordRef.current.validity.valid);
+    //passwordRef.current.validity.valid = false;
+    console.log(confirmPasswordRef.current.validity.valid);
+    console.log(confirmPasswordRef);
+
+    setValidated(true);
+
     if (confirmPasswordRef.current.value !== passwordRef.current.value) {
       setFormError("Las contraseñas no coinciden");
       return false;
     }
     //confirmPasswordRef.validity.invalid = true;
-    setValidated(true);
 
     if (form.checkValidity()) {
       registerMutation({
@@ -61,11 +68,6 @@ const RegisterForm = () => {
       });
     }
   };
-
-  const checkPasses = () => {
-    console.log("Entraaa");
-    return false;
-  }
 
   if (localStorage.getItem("auth-token")) return <Redirect to="/my-forest" />;
 
@@ -126,7 +128,6 @@ const RegisterForm = () => {
             placeholder="Confirmar contraseña"
             ref={confirmPasswordRef}
             autoComplete="a-strong-password"
-            isValid={checkPasses()}
             required
           />
           <Form.Control.Feedback type="invalid">

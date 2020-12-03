@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 import ReactCountryFlag from "react-country-flag";
 
 import Card from "react-bootstrap/Card";
+import { useTranslation } from "react-i18next";
 
 import "./TreeCard.scss";
 
-const TreeCard = ({ tree }) => {
+const TreeCard = ({ tree, isCreatedByMe }) => {
+  const { t } = useTranslation();
+  console.log(isCreatedByMe);
   return (
     <Link to={"/tree/" + tree.id}>
       <Card className="tree">
-        <Card.Body>
+        <Card.Body className={isCreatedByMe ? 'created-by-me' : ''}>
           <div className="tree-icon">
             <Card.Img variant="top" src="./tree-icon.png" />
           </div>
@@ -30,7 +33,9 @@ const TreeCard = ({ tree }) => {
           </div>
         </Card.Body>
         <Card.Footer>
-          <small className="text-muted" title={tree.treeId.owner.email}>Creado por: {tree.treeId.owner.name}</small>
+          <small className="text-muted" title={tree.treeId.owner.email}>
+            {isCreatedByMe ? "Original" : t('treeList.createdBy') + ": " + tree.treeId.owner.name}
+          </small>
         </Card.Footer>
       </Card>
     </Link>

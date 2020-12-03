@@ -39,11 +39,11 @@ const TopBar = ({ user }) => {
             id="collasible-nav-dropdown"
           >
             <NavDropdown.Item className="mr-auto">
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile">{t('profile')}</Link>
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item className="mr-auto">
-              <Link to="/logout">Log Out</Link>
+              <Link to="/logout">{t('logout')}</Link>
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

@@ -1,6 +1,17 @@
 {
     "my_forest": "Mi Bosque",
     "about": "Contacto",
+    "profile": "Perfil",
+    "logout": "Cerrar sesión",
+    "treeList": {
+        "createdBy": "Creado por",
+        "addTree": "Añadir árbol"
+    },
+    "form": {
+        "name": "Nombre",
+        "email": "Correo electrónico",
+        "numberOfApples": "Nº de manzanas"
+    },
     "language": "Idioma",
     "languages": {
         "english": "Inglés",

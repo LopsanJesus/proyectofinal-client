@@ -1,6 +1,17 @@
 {
     "my_forest": "My Forest",
     "about": "About",
+    "profile": "Profile",
+    "logout": "Log Out",
+    "treeList": {
+        "createdBy": "Created by",
+        "addTree": "Add Tree"
+    },
+    "form": {
+        "name": "Name",
+        "email": "Email",
+        "numberOfApples": "Number of Apples"
+    },
     "language": "Language",
     "languages": {
         "english": "English",

@@ -12,7 +12,7 @@ import { saveUserForest } from "../../actions/forest";
 
 import "./TreeList.scss";
 
-const TreeList = ({ trees, saveUserForest }) => {
+const TreeList = ({ user, trees, saveUserForest }) => {
   const { loading, error, data } = useQuery(GET_MY_FOREST, {
     fetchPolicy: "network-only"
   });
@@ -24,18 +24,22 @@ const TreeList = ({ trees, saveUserForest }) => {
   //return <>{data}</>
   saveUserForest(data.getMyForest)
 
+  console.log(data.getMyForest[0].treeId.owner.id)
+  console.log(user.id)
+
   return (
     <Container fluid className="TreeList">
-      {trees && trees.map((tree) => {
-        return <TreeCard key={tree.id} tree={tree} />;
+      {trees && user && trees.map((tree) => {
+        return <TreeCard key={tree.id} tree={tree} isCreatedByMe={tree.treeId.owner.email === user.email} />;
       })}
       <CreateTreeButton />
     </Container>
   );
 };
 
-const mapStateToProps = ({ forest }) => {
+const mapStateToProps = ({ userInfo, forest }) => {
   return {
+    user: userInfo.user,
     trees: forest.trees,
   };
 };

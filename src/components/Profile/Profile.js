@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './Profile.scss';
 
-import { Container } from "react-bootstrap";
+import { Badge, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
@@ -15,16 +15,59 @@ const Profile = ({ user }) => {
   };
 
   return (<>
-    Hi {user && user.name}!
-    <Container as={Col} md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 5 }}>
-      <Form.Group>
-        <Form.Label>{t('language')}</Form.Label>
-        <Form.Control as="select" name="language" value={i18n.language} onChange={handleChange}>
-          <option value="en">{t('languages.english')}</option>
-          <option value="es">{t('languages.spanish')}</option>
-        </Form.Control>
+    <h2>{t('profile')}</h2>
+    <br></br>
+    <Form className="profile">
+      <Form.Group as={Row}>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
+          <Form.Label>{t('form.name')}</Form.Label>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
+          <Form.Control type="text" placeholder={t('form.name')} value={user.name} />
+        </Col>
       </Form.Group>
-    </Container>
+
+      <Form.Group as={Row}>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
+          <Form.Label>{t('form.email')}</Form.Label>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
+          <Form.Control type="email" placeholder={t('form.email')} value={user.email} />
+        </Col>
+      </Form.Group>
+
+      <Form.Group as={Row}>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
+          <Form.Label>{t('form.numberOfApples')}</Form.Label>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
+          {/* <Form.Control plaintext readOnly defaultValue="634" /> */}
+          <h5><Badge variant="danger">634</Badge></h5>
+        </Col>
+      </Form.Group>
+
+      <Form.Group as={Row}>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
+          <Form.Label>{t('form.numberOfApples')}</Form.Label>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
+          {/* <Form.Control plaintext readOnly defaultValue="634" /> */}
+          <h5><Badge variant="danger">634</Badge></h5>
+        </Col>
+      </Form.Group>
+
+      <Form.Group as={Row}>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
+          <Form.Label>{t('language')}</Form.Label>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
+          <Form.Control as="select" name="language" value={i18n.language} onChange={handleChange}>
+            <option value="en">{t('languages.english')}</option>
+            <option value="es">{t('languages.spanish')}</option>
+          </Form.Control>
+        </Col>
+      </Form.Group>
+    </Form>
   </>);
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./LoginForm.scss";
 import { useMutation } from "@apollo/client";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
@@ -21,7 +21,12 @@ const LoginForm = ({ saveUserInfo }) => {
   let history = useHistory();
   const params = useParams();
   let query = useQuery();
-  let queryEmail = query.get("email");
+  // var queryEmail;
+  // useEffect(() => {
+  //   console.log(query.get('email'));
+  //   queryEmail = query.get("email") ? query.get("email") : '';
+  //   queryEmail = "aa"
+  // }, []);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -71,7 +76,7 @@ const LoginForm = ({ saveUserInfo }) => {
             placeholder="Introduzca su email"
             ref={emailRef}
             autoComplete="email@domain.com"
-            value={queryEmail ? queryEmail : ''}
+            defaultValue={query.get('email') ? query.get('email') : ""}
             required
           />
           <Form.Control.Feedback type="invalid">

@@ -1,43 +1,40 @@
 import React, { useRef, useState } from "react";
-import "./LoginForm.scss";
+import "./RegisterForm.scss";
 import { useMutation } from "@apollo/client";
-import { Link, Redirect, useHistory, useParams } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { saveUserInfo } from "../../actions/userInfo";
 
-import { LOGIN_USER } from "../../queries/user";
+import { REGISTER_USER } from "../../queries/user";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import useQuery from "../../helpers/paramHelper";
 
-const LoginForm = ({ saveUserInfo }) => {
+const RegisterForm = () => {
   const { t } = useTranslation();
   let history = useHistory();
-  const params = useParams();
-  let query = useQuery();
-  let queryEmail = query.get("email");
+  //const params = useParams();
 
+  const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
   const [validated, setValidated] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const [loginMutation, { loading }] = useMutation(LOGIN_USER, {
+  const [registerMutation, { loading }] = useMutation(REGISTER_USER, {
     onError(error) {
       setFormError(error.message);
     },
     onCompleted(result) {
-      localStorage.setItem("auth-token", result.login.token);
-      saveUserInfo(result.login.user);
-      if (params.redirect && params.redirect !== "/logout")
-        history.push("/" + params.redirect);
-      else history.push("/my-forest");
+      //localStorage.setItem("auth-token", result.login.token);
+      //saveUserInfo(result.login.user);
+      history.push("/login?email=" + result.register.email);
     },
   });
 
@@ -46,11 +43,18 @@ const LoginForm = ({ saveUserInfo }) => {
     event.stopPropagation();
 
     const form = event.currentTarget;
+
+    if (confirmPasswordRef.current.value !== passwordRef.current.value) {
+      setFormError("Las contraseñas no coinciden");
+      return false;
+    }
+    //confirmPasswordRef.validity.invalid = true;
     setValidated(true);
 
     if (form.checkValidity()) {
-      loginMutation({
+      registerMutation({
         variables: {
+          name: nameRef.current.value,
           email: emailRef.current.value,
           password: passwordRef.current.value,
         },
@@ -58,20 +62,42 @@ const LoginForm = ({ saveUserInfo }) => {
     }
   };
 
+  const checkPasses = () => {
+    console.log("Entraaa");
+    return false;
+  }
+
   if (localStorage.getItem("auth-token")) return <Redirect to="/my-forest" />;
 
   return (
     <Container as={Col} md={{ span: 8, offset: 2 }} lg={{ span: 4, offset: 4 }}>
+      <h3>{t('registerTitle')}</h3>
+
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
         {formError && <Alert variant="danger">{formError}</Alert>}
-        <Form.Group controlId="formBasicEmail">
+
+        <Form.Group controlId="formBasicName">
+          <Form.Label>{t('form.name')}</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder={t('form.namePlaceholder')}
+            ref={nameRef}
+            autoComplete="email@domain.com"
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            {t('form.nameFeedback')}
+            {/* Por favor introduzca un email válido. */}
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group controlId="formBasicName">
           <Form.Label>{t('form.email')}</Form.Label>
           <Form.Control
             type="email"
             placeholder="Introduzca su email"
             ref={emailRef}
             autoComplete="email@domain.com"
-            value={queryEmail ? queryEmail : ''}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -92,6 +118,22 @@ const LoginForm = ({ saveUserInfo }) => {
             Por favor introduzca su contraseña.
           </Form.Control.Feedback>
         </Form.Group>
+
+        <Form.Group controlId="formBasicConfirmPassword">
+          <Form.Label>{t('form.confirmPassword')}</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Confirmar contraseña"
+            ref={confirmPasswordRef}
+            autoComplete="a-strong-password"
+            isValid={checkPasses()}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Contraseña diferente.
+          </Form.Control.Feedback>
+        </Form.Group>
+
         <Button variant="primary" type="submit">
           {loading ? (
             <Spinner
@@ -107,8 +149,10 @@ const LoginForm = ({ saveUserInfo }) => {
         </Button>
 
         <Form.Group controlId="checkRegistered">
-          <Link to="/register">¿No tiene cuenta todavía?(Haga click aquí)</Link>
+          <Link to="/login">¿Ya tiene cuenta?(Haga click aquí)</Link>
         </Form.Group>
+
+
       </Form>
     </Container>
   );
@@ -118,4 +162,4 @@ const mapDispatchToProps = (dispatch) => ({
   saveUserInfo: (user) => dispatch(saveUserInfo(user)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(RegisterForm);

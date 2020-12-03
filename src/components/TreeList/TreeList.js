@@ -17,15 +17,10 @@ const TreeList = ({ user, trees, saveUserForest }) => {
     fetchPolicy: "network-only"
   });
 
-  if (loading) return <div>Loading...</div>
-  //if (error) return <div>ERROR</div>
+  if (loading) return <div>Haciendo crecer los árboles... (Sin Plutonio)</div>
+  if (error) return <div>ERROR</div>
 
-  console.log(data.getMyForest);
-  //return <>{data}</>
   saveUserForest(data.getMyForest)
-
-  console.log(data.getMyForest[0].treeId.owner.id)
-  console.log(user.id)
 
   return (
     <Container fluid className="TreeList">

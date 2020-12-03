@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import "./ProtectedRoute.scss";
-import { GET_ME } from "../../queries/login";
+import { GET_ME } from "../../queries/user";
 import { useQuery } from "@apollo/client";
 import { saveUserInfo } from "../../actions/userInfo";
 

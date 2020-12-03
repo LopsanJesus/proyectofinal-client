@@ -13,6 +13,7 @@ import TreeList from "./components/TreeList";
 import Tree from "./components/Tree";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
@@ -27,7 +28,6 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem("auth-token");
-  //const token = "eyJhbGciOiJIUzI1NiIsInR5cI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJsbGl6YXpAbWVkaWEuY29tIiwiaWF0IjoxNjA1NzUwNjQ5LCJleHAiOjE2MDU4MzcwNDl9.83kcHbV-TcruZ3UFuEiXtl9jHwrTfOCK-uB7TY120wI";
   // return the headers to the context so httpLink can read them
   return {
     headers: {
@@ -74,6 +74,9 @@ function App() {
                 </Route>
                 <Route path="/login/:redirect?">
                   <LoginForm />
+                </Route>
+                <Route path="/register">
+                  <RegisterForm />
                 </Route>
                 <ProtectedRoute exact path="/logout">
                   <Logout />

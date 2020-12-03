@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './Profile.scss';
 
-import { Badge, Container, Row } from "react-bootstrap";
+import { Badge, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
@@ -33,16 +33,6 @@ const Profile = ({ user }) => {
         </Col>
         <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
           <Form.Control type="email" placeholder={t('form.email')} value={user.email} />
-        </Col>
-      </Form.Group>
-
-      <Form.Group as={Row}>
-        <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
-          <Form.Label>{t('form.numberOfApples')}</Form.Label>
-        </Col>
-        <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
-          {/* <Form.Control plaintext readOnly defaultValue="634" /> */}
-          <h5><Badge variant="danger">634</Badge></h5>
         </Col>
       </Form.Group>
 

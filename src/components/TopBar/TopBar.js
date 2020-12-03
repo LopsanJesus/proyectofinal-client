@@ -17,37 +17,38 @@ const TopBar = ({ user }) => {
       <Navbar.Brand>
         <Link to="/">{appConfig.title}</Link>
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link className="mr-auto">
-            <Link to="/my-forest">{t('my_forest')}</Link>
-            {/* <Link to="/my-forest">My Forest</Link> */}
-          </Nav.Link>
-          <Nav.Link className="mr-auto">
-            <Link to="/about">{t('about')}</Link>
-          </Nav.Link>
-        </Nav>
-        <Nav id="right-nav">
-          <Navbar.Text>{user && user.name}</Navbar.Text>
-          <NavDropdown
-            title={
-              <span>
-                <img className="profile-image" src={src} alt="User Pic" />
-              </span>
-            }
-            id="collasible-nav-dropdown"
-          >
-            <NavDropdown.Item className="mr-auto">
-              <Link to="/profile">{t('profile')}</Link>
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item className="mr-auto">
-              <Link to="/logout">{t('logout')}</Link>
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
+      { user && <>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link className="mr-auto">
+              <Link to="/my-forest">{t('my_forest')}</Link>
+            </Nav.Link>
+            <Nav.Link className="mr-auto">
+              <Link to="/about">{t('about')}</Link>
+            </Nav.Link>
+          </Nav>
+          <Nav id="right-nav">
+            <Navbar.Text>{user && user.name}</Navbar.Text>
+            <NavDropdown
+              title={
+                <span>
+                  <img className="profile-image" src={src} alt="User Pic" />
+                </span>
+              }
+              id="collasible-nav-dropdown"
+            >
+              <NavDropdown.Item className="mr-auto">
+                <Link to="/profile">{t('profile')}</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item className="mr-auto">
+                <Link to="/logout">{t('logout')}</Link>
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </>}
     </Navbar>
   );
 };

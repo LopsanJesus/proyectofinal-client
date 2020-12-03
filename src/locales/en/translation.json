@@ -1,16 +1,23 @@
 {
+    "letsStart": "Let's Start!",
     "my_forest": "My Forest",
     "about": "About",
     "profile": "Profile",
     "logout": "Log Out",
+    "registerTitle": "New User",
     "treeList": {
         "createdBy": "Created by",
         "addTree": "Add Tree"
     },
     "form": {
         "name": "Name",
+        "namePlaceholder": "Write your name please",
+        "nameFeedback": "Write a name please",
         "email": "Email",
-        "numberOfApples": "Number of Apples"
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "numberOfApples": "Number of Apples",
+        "login": "Login"
     },
     "language": "Language",
     "languages": {

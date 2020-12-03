@@ -1,16 +1,23 @@
 {
+    "letsStart": "¡Empecemos!",
     "my_forest": "Mi Bosque",
     "about": "Contacto",
     "profile": "Perfil",
     "logout": "Cerrar sesión",
+    "registerTitle": "Nuevo Usuario",
     "treeList": {
         "createdBy": "Creado por",
         "addTree": "Añadir árbol"
     },
     "form": {
         "name": "Nombre",
+        "namePlaceholder": "Introduzca su nombre",
+        "nameFeedback": "Introduzca un nombre por favor",
         "email": "Correo electrónico",
-        "numberOfApples": "Nº de manzanas"
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "numberOfApples": "Nº de manzanas",
+        "login": "Entrar"
     },
     "language": "Idioma",
     "languages": {

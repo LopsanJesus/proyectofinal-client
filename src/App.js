@@ -16,6 +16,7 @@ import LoginForm from "./components/LoginForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
+import "./config/i18n";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

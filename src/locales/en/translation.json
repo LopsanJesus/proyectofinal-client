@@ -1,0 +1,9 @@
+{
+    "my_forest": "My Forest",
+    "about": "About",
+    "language": "Language",
+    "languages": {
+        "english": "English",
+        "spanish": "Spanish"
+    }
+}

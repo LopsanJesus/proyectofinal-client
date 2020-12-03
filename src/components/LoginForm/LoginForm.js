@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { saveUserInfo } from "../../actions/userInfo";
 
-import { LOGIN_USER_QUERY } from "../../queries/login";
+import { LOGIN_USER } from "../../queries/login";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import Col from "react-bootstrap/Col";
@@ -23,7 +23,7 @@ const LoginForm = ({ saveUserInfo }) => {
   const [validated, setValidated] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const [loginMutation, { loading }] = useMutation(LOGIN_USER_QUERY, {
+  const [loginMutation, { loading }] = useMutation(LOGIN_USER, {
     onError(error) {
       setFormError(error.message);
     },
@@ -96,8 +96,8 @@ const LoginForm = ({ saveUserInfo }) => {
               aria-hidden="true"
             />
           ) : (
-            <div>Login</div>
-          )}
+              <div>Login</div>
+            )}
         </Button>
       </Form>
     </Container>

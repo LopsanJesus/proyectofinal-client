@@ -1,6 +1,6 @@
-const config = {
+const appConfig = {
     title: 'Treelang',
     titleColor: 'blue',
 }
 
-export default config
+export default appConfig

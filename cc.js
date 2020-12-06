@@ -11,6 +11,5 @@ exec(command, (error, stdout, stderr) => {
         console.log(`stderr: ${stderr}`);
         return;
     }
-    console.log("Component " + process.argv[2] + " created successfully.")
-    //console.log(`stdout: ${stdout}`);
+    console.log("Component " + process.argv[2] + " created successfully.");
 });

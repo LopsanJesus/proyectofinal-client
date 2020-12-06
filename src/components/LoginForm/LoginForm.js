@@ -1,22 +1,19 @@
 import React, { useRef, useState } from "react";
 import "./LoginForm.scss";
-import { useMutation } from "@apollo/client";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
-import { connect } from "react-redux";
-
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { saveUserInfo } from "../../actions/userInfo";
-
-import { LOGIN_USER } from "../../queries/user";
-import Alert from "react-bootstrap/Alert";
-import Spinner from "react-bootstrap/Spinner";
-import Col from "react-bootstrap/Col";
-import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+
 import useQuery from "../../helpers/paramHelper";
 
-const LoginForm = ({ saveUserInfo }) => {
+import { connect } from "react-redux";
+import { saveUserInfo } from "../../actions/userInfo";
+
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../queries/user";
+
+import { Alert, Spinner, Col, Container, Form, Button } from "react-bootstrap";
+
+const LoginForm = ({ user, saveUserInfo }) => {
   const { t } = useTranslation();
   let history = useHistory();
   const params = useParams();
@@ -33,7 +30,10 @@ const LoginForm = ({ saveUserInfo }) => {
     },
     onCompleted(result) {
       localStorage.setItem("auth-token", result.login.token);
+      console.log("Result: " + result.login.token);
       saveUserInfo(result.login.user);
+      console.log("Login completed");
+      console.log(localStorage.getItem("auth-token"))
       if (params.redirect && params.redirect !== "/logout")
         history.push("/" + params.redirect);
       else history.push("/my-forest");
@@ -57,7 +57,7 @@ const LoginForm = ({ saveUserInfo }) => {
     }
   };
 
-  if (localStorage.getItem("auth-token")) return <Redirect to="/my-forest" />;
+  if (user) return <Redirect to="/my-forest" />;
 
   return (
     <Container as={Col} md={{ span: 8, offset: 2 }} lg={{ span: 4, offset: 4 }}>
@@ -113,8 +113,14 @@ const LoginForm = ({ saveUserInfo }) => {
   );
 };
 
+const mapStateToProps = ({ userInfo }) => {
+  return {
+    user: userInfo.user,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => ({
   saveUserInfo: (user) => dispatch(saveUserInfo(user)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

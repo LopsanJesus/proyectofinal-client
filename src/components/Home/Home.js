@@ -8,6 +8,12 @@ const Home = () => {
   const { t } = useTranslation();
   return <div>
     <h1>Bienvenido a Treelang!</h1>
+    <h2>Si quieres saber más sobre nosotros:</h2>
+    <Link to="/about">
+      <Button variant="primary">
+        {t('about')}
+      </Button>
+    </Link>
     <h3>Le ofrecemos:</h3>
     <ul>
       <p>Aprendizaje</p>

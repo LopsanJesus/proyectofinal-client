@@ -2,6 +2,9 @@ $createdByMeColor: #bcdcf7;
 
 .tree {
   min-width: 300px;
+  max-width: 300px;
+  height: 220px;
+  max-height: 220px;
   margin-right: 20px;
   margin-bottom: 20px;
 
@@ -16,15 +19,28 @@ $createdByMeColor: #bcdcf7;
 
   .title-and-flag {
     width: 100%;
+
+    .title {
+    }
   }
 
-  .country-flag {
-    width: 3em;
-    height: 3em;
-    border-radius: 3em;
-    overflow: hidden;
-    margin: 0 auto;
+  .language-flag {
   }
+
+  .source-language-flag {
+    width: 2em;
+    height: 2em;
+    border-radius: 3em;
+    margin-right: 1em;
+  }
+  
+  .target-language-flag {
+    width: 4em;
+    height: 4em;
+    border-radius: 3em;
+    margin-left: 1em;
+  }
+
 
   &:hover {
     border: 1px solid black;
@@ -34,4 +50,10 @@ $createdByMeColor: #bcdcf7;
     background-color: $createdByMeColor;
   }
 
+}
+
+.arrow {
+  font-size: 3em;
+  position: relative;
+  top: 10px;
 }

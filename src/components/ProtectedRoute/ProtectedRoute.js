@@ -2,31 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import "./ProtectedRoute.scss";
-import { GET_ME } from "../../queries/user";
-import { useQuery } from "@apollo/client";
-import { saveUserInfo } from "../../actions/userInfo";
-
-import Logout from "../Logout";
 
 const ProtectedRoute = ({
   user,
-  saveUserInfo,
   children,
   location,
   ...props
 }) => {
-  const { loading, error, data } = useQuery(GET_ME);
-
-  if (!localStorage.getItem("auth-token")) {
-    return <Redirect to={"/login" + location.pathname} />;
-  }
-  if (loading) return <p>Loading...</p>;
-  if (error) return <Logout />;
 
   if (!user) {
-    saveUserInfo({
-      ...data.getMe,
-    });
+    console.log("if1 de protectedRouyte");
+    return <Redirect to={"/login" + location.pathname} />;
   }
 
   return <Route {...props}>{children}</Route>;
@@ -38,8 +24,4 @@ const mapStateToProps = ({ userInfo }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  saveUserInfo: (user) => dispatch(saveUserInfo(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoute);
+export default connect(mapStateToProps, null)(ProtectedRoute);

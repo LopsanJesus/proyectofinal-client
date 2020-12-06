@@ -9,6 +9,10 @@
         "createdBy": "Creado por",
         "addTree": "Añadir árbol"
     },
+    "discover": {
+        "link": "Descubre",
+        "title": "Árboles plantados en Treelang"
+    },
     "form": {
         "name": "Nombre",
         "namePlaceholder": "Introduzca su nombre",
@@ -17,7 +21,8 @@
         "password": "Contraseña",
         "confirmPassword": "Confirmar contraseña",
         "numberOfApples": "Nº de manzanas",
-        "login": "Entrar"
+        "login": "Acceder",
+        "register": "Registrarse"
     },
     "language": "Idioma",
     "languages": {

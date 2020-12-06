@@ -8,7 +8,10 @@ import { NavDropdown } from "react-bootstrap";
 import "./TopBar.scss";
 import { useTranslation } from "react-i18next";
 
-const TopBar = ({ user }) => {
+
+const TopBar = ({
+  user
+}) => {
   const { t } = useTranslation();
   const src = "../../../full-apple.png";
 
@@ -17,18 +20,20 @@ const TopBar = ({ user }) => {
       <Navbar.Brand>
         <Link to="/">{appConfig.title}</Link>
       </Navbar.Brand>
-      { user && <>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link className="mr-auto">
+            <Link to="/discover">{t('discover.link')}</Link>
+          </Nav.Link>
+          {user && <>
             <Nav.Link className="mr-auto">
               <Link to="/my-forest">{t('my_forest')}</Link>
             </Nav.Link>
-            <Nav.Link className="mr-auto">
-              <Link to="/about">{t('about')}</Link>
-            </Nav.Link>
-          </Nav>
-          <Nav id="right-nav">
+          </>}
+        </Nav>
+        <Nav id="right-nav">
+          {user ? <>
             <Navbar.Text>{user && user.name}</Navbar.Text>
             <NavDropdown
               title={
@@ -46,9 +51,15 @@ const TopBar = ({ user }) => {
                 <Link to="/logout">{t('logout')}</Link>
               </NavDropdown.Item>
             </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </>}
+          </>
+            :
+            <>
+              <Nav.Link className="mr-auto">
+                <Link to="/login">{t('form.login')}</Link>
+              </Nav.Link>
+            </>}
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

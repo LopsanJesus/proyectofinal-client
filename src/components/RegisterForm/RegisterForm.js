@@ -2,11 +2,9 @@ import React, { useRef, useState } from "react";
 import "./RegisterForm.scss";
 import { useMutation } from "@apollo/client";
 import { Link, Redirect, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { saveUserInfo } from "../../actions/userInfo";
 
 import { REGISTER_USER } from "../../queries/user";
 import Alert from "react-bootstrap/Alert";
@@ -18,7 +16,6 @@ import { useTranslation } from "react-i18next";
 const RegisterForm = () => {
   const { t } = useTranslation();
   let history = useHistory();
-  //const params = useParams();
 
   const nameRef = useRef(null);
   const emailRef = useRef(null);
@@ -32,8 +29,6 @@ const RegisterForm = () => {
       setFormError(error.message);
     },
     onCompleted(result) {
-      //localStorage.setItem("auth-token", result.login.token);
-      //saveUserInfo(result.login.user);
       history.push("/login?email=" + result.register.email);
     },
   });
@@ -44,19 +39,12 @@ const RegisterForm = () => {
 
     const form = event.currentTarget;
 
-    console.log(form);
-    console.log(confirmPasswordRef.current.validity.valid);
-    //passwordRef.current.validity.valid = false;
-    console.log(confirmPasswordRef.current.validity.valid);
-    console.log(confirmPasswordRef);
-
     setValidated(true);
 
     if (confirmPasswordRef.current.value !== passwordRef.current.value) {
       setFormError("Las contraseñas no coinciden");
       return false;
     }
-    //confirmPasswordRef.validity.invalid = true;
 
     if (form.checkValidity()) {
       registerMutation({
@@ -145,7 +133,7 @@ const RegisterForm = () => {
               aria-hidden="true"
             />
           ) : (
-              <div>{t('form.login')}</div>
+              <div>{t('form.register')}</div>
             )}
         </Button>
 
@@ -153,14 +141,9 @@ const RegisterForm = () => {
           <Link to="/login">¿Ya tiene cuenta?(Haga click aquí)</Link>
         </Form.Group>
 
-
       </Form>
     </Container>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  saveUserInfo: (user) => dispatch(saveUserInfo(user)),
-});
-
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default RegisterForm;

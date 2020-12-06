@@ -5,11 +5,12 @@ import { ApolloProvider } from "@apollo/client";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import About from "./components/About";
+import Discover from "./components/Discover";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Branch from "./components/Branch";
 import TopBar from "./components/TopBar";
-import TreeList from "./components/TreeList";
+import MyForest from "./components/MyForest";
 import Tree from "./components/Tree";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
@@ -18,21 +19,20 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
 import "./config/i18n";
+import SafetyChecker from "./SafetyChecker";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CreateTreeForm from "./components/CreateTreeForm/CreateTreeForm";
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem("auth-token");
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      //authorization: token ? `Bearer ${token}` : "",
       Authorization: token,
     },
   };
@@ -51,46 +51,54 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <Router>
-          <div className="router">
-            <TopBar />
+        <SafetyChecker>
+          <Router>
+            <div className="router">
+              <TopBar />
 
-            <div className="content">
-              <Switch>
-                <ProtectedRoute exact path="/my-forest">
-                  <TreeList />
-                </ProtectedRoute>
-                <ProtectedRoute path="/tree/:id">
-                  <Tree />
-                </ProtectedRoute>
-                <ProtectedRoute path="/branch/:id">
-                  <Branch />
-                </ProtectedRoute>
-                <ProtectedRoute exact path="/profile">
-                  <Profile />
-                </ProtectedRoute>
-                <Route exact path="/about">
-                  <About />
-                </Route>
-                <Route path="/login/:redirect?">
-                  <LoginForm />
-                </Route>
-                <Route path="/register">
-                  <RegisterForm />
-                </Route>
-                <ProtectedRoute exact path="/logout">
-                  <Logout />
-                </ProtectedRoute>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <NotFound />
-                <Redirect to="/" />
-              </Switch>
+              <div className="content">
+                <Switch>
+                  <ProtectedRoute exact path="/my-forest">
+                    <MyForest />
+                  </ProtectedRoute>
+                  <ProtectedRoute exact path="/create-tree">
+                    <CreateTreeForm />
+                  </ProtectedRoute>
+                  <Route path="/tree/:id">
+                    <Tree />
+                  </Route>
+                  <Route path="/branch/:id">
+                    <Branch />
+                  </Route>
+                  <Route path="/discover">
+                    <Discover />
+                  </Route>
+                  <ProtectedRoute exact path="/profile">
+                    <Profile />
+                  </ProtectedRoute>
+                  <Route exact path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/login/:redirect?">
+                    <LoginForm />
+                  </Route>
+                  <Route path="/register">
+                    <RegisterForm />
+                  </Route>
+                  <ProtectedRoute exact path="/logout">
+                    <Logout />
+                  </ProtectedRoute>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <NotFound />
+                  <Redirect to="/" />
+                </Switch>
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </Router>
+          </Router>
+        </SafetyChecker>
       </div>
     </ApolloProvider>
   );

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { userLogout } from '../../actions/root';
 
 const Logout = ({ userLogout }) => {
+  console.log("Loggin out...")
   localStorage.removeItem("auth-token");
   userLogout();
   return <Redirect to="/login" />;

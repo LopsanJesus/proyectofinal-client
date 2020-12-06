@@ -12,11 +12,11 @@ const branchList = [
   { id: 4, name: "branch4", apples: 100, leaves: 150 },
 ];
 
-const BranchList = () => {
+const BranchList = ({ branches, isImported }) => {
   return (
     <Container fluid className="BranchList">
-      {branchList.map((branch) => {
-        return <BranchCard key={branch.id} branch={branch} />;
+      {branches.map((branch) => {
+        return <BranchCard key={branch.id} branch={branch} isImported={isImported} />;
       })}
     </Container>
   );

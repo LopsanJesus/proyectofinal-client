@@ -9,6 +9,10 @@
         "createdBy": "Created by",
         "addTree": "Add Tree"
     },
+    "discover": {
+        "link": "Discover",
+        "title": "Planted trees in Treelang"
+    },
     "form": {
         "name": "Name",
         "namePlaceholder": "Write your name please",
@@ -17,7 +21,8 @@
         "password": "Password",
         "confirmPassword": "Confirm password",
         "numberOfApples": "Number of Apples",
-        "login": "Login"
+        "login": "Login",
+        "register": "Register"
     },
     "language": "Language",
     "languages": {

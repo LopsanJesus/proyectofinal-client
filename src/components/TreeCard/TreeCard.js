@@ -1,34 +1,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ReactCountryFlag from "react-country-flag";
+// import ReactCountryFlag from "react-country-flag";
 
-import Card from "react-bootstrap/Card";
+import { Card, Image } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 import "./TreeCard.scss";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
   const { t } = useTranslation();
-  console.log(isCreatedByMe);
+  console.log(tree)
   return (
-    <Link to={"/tree/" + tree.id}>
+    <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">
         <Card.Body className={isCreatedByMe ? 'created-by-me' : ''}>
           <div className="tree-icon">
             <Card.Img variant="top" src="./tree-icon.png" />
           </div>
           <div className="title-and-flag">
-            <Card.Title>{tree.customName}</Card.Title>
-            <div className="country-flag">
-              <ReactCountryFlag
+            <Card.Title>
+              <span className="title">{tree.customName}</span>
+            </Card.Title>
+            <div>
+              <Image
+                src={tree.treeId.sourceLang.code + ".png"}
+                className="language-flag source-language-flag"
+                title="Already known"
+                roundedCircle
+              />
+              {/* <ReactCountryFlag
+                className="language-flag source-language-flag"
+                countryCode={tree.treeId.sourceLang.code}
+                svg
+                style={{
+                  width: "2em",
+                  height: "2em",
+                }}
+              /> */}
+              <span className="arrow">&#8680;</span>
+              <Image
+                src={tree.treeId.targetLang.code + ".png"}
+                className="language-flag target-language-flag"
+                title="Learning"
+                roundedCircle
+              />
+              {/* <ReactCountryFlag
+                className="language-flag target-language-flag"
                 countryCode={tree.treeId.targetLang.code}
                 svg
                 style={{
-                  width: "3em",
-                  height: "3em",
+                  width: "4em",
+                  height: "4em",
                 }}
-              />
+              /> */}
             </div>
           </div>
         </Card.Body>

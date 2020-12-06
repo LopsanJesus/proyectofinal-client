@@ -44,7 +44,7 @@ const CreateTreeForm = () => {
 
     setValidated(true);
 
-    if (sourceLangRef.current.value == targetLangRef.current.value) {
+    if (sourceLangRef.current.value === targetLangRef.current.value) {
       setFormError("Los idiomas no pueden ser el mismo");
       return false;
     }

@@ -10,7 +10,7 @@ import "./TreeCard.scss";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
   const { t } = useTranslation();
-  console.log(tree)
+  console.log(tree);
   return (
     <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">

@@ -29,11 +29,8 @@ const LoginForm = ({ user, saveUserInfo }) => {
       setFormError(error.message);
     },
     onCompleted(result) {
-      localStorage.setItem("auth-token", result.login.token);
-      console.log("Result: " + result.login.token);
+      localStorage.setItem("auth-token", result.login.token)
       saveUserInfo(result.login.user);
-      console.log("Login completed");
-      console.log(localStorage.getItem("auth-token"))
       if (params.redirect && params.redirect !== "/logout")
         history.push("/" + params.redirect);
       else history.push("/my-forest");
@@ -91,22 +88,29 @@ const LoginForm = ({ user, saveUserInfo }) => {
             Por favor introduzca su contraseña.
           </Form.Control.Feedback>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          {loading ? (
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-            />
-          ) : (
-              <div>{t('form.login')}</div>
-            )}
-        </Button>
+
+        <Form.Group>
+          <Button variant="primary" type="submit">
+            {loading ? (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+                <div>{t('form.login')}</div>
+              )}
+          </Button>
+        </Form.Group>
 
         <Form.Group controlId="checkRegistered">
-          <Link to="/register">¿No tiene cuenta todavía?(Haga click aquí)</Link>
+          <Link to="/register">
+            <Button variant="outline-primary">
+              ¿No tiene cuenta todavía?
+            </Button>
+          </Link>
         </Form.Group>
       </Form>
     </Container>

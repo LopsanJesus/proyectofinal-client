@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { PlusCircle } from 'react-bootstrap-icons';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './CreateBranchButton.scss';
 
 const CreateBranchButton = () => {
-  const { t } = useTranslation();
+  //const { t } = useTranslation();
   return (
     <Link to="/create-branch">
       <Card className="createTreeButton">

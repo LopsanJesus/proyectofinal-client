@@ -123,22 +123,28 @@ const RegisterForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          {loading ? (
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-            />
-          ) : (
-              <div>{t('form.register')}</div>
-            )}
-        </Button>
+        <Form.Group>
+          <Button variant="primary" type="submit">
+            {loading ? (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+                <div>{t('form.register')}</div>
+              )}
+          </Button>
+        </Form.Group>
 
         <Form.Group controlId="checkRegistered">
-          <Link to="/login">¿Ya tiene cuenta?(Haga click aquí)</Link>
+          <Link to="/login">
+            <Button variant="outline-primary">
+              ¿Ya tiene cuenta?
+            </Button>
+          </Link>
         </Form.Group>
 
       </Form>

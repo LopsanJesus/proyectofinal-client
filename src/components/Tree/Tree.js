@@ -20,7 +20,7 @@ const Tree = ({ user }) => {
     variables: { id: parseInt(params.id) }
   });
 
-  const [importTreeMutation, { loadingimportTreeMutation }] = useMutation(IMPORT_TREE, {
+  const [importTreeMutation/*, { loadingimportTreeMutation }*/] = useMutation(IMPORT_TREE, {
     onError(error) {
       alert("Error al importar" + error);
     },
@@ -32,7 +32,7 @@ const Tree = ({ user }) => {
   if (loadingTree) return <div>Loading...</div>
   if (error) return <div>ERROR. Ese árbol no existe.</div>
 
-  if (!checked && data.getTree.importedBy.filter((importedTree) => importedTree.userId.id == user.id).length > 0)
+  if (!checked && data.getTree.importedBy.filter((importedTree) => importedTree.userId.id === user.id).length > 0)
     setChecked("checked");
 
   const handleStarClick = () => {
@@ -59,7 +59,7 @@ const Tree = ({ user }) => {
       {data.getTree.sourceLang.name}
       <BranchList branches={data.getTree.branches} isImported={checked !== ""} />
 
-      {data.getTree.owner.id == user.id && <CreateBranchButton />}
+      {data.getTree.owner.id === user.id && <CreateBranchButton />}
     </Container>
   );
 };

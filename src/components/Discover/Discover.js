@@ -18,10 +18,15 @@ const Discover = ({ user }) => {
   if (loading) return <div>Haciendo crecer los árboles... (Sin materiales radiactivos)</div>
   if (error) return <div>ERROR. No podemos encontrar el bosque en el mapa.</div>
 
+  console.log()
   const trees = data.getAllTrees
-    .filter((tree) =>
-      tree.owner.id != user.id
-    )
+    .filter((tree) => {
+      if (user) {
+        return (tree.owner.id !== user.id
+          && !tree.importedBy.find((imported) => imported.userId.id === user.id))
+      } else
+        return true
+    })
     .map((tree) => {
       return ({
         id: tree.id,

@@ -50,6 +50,12 @@ export const GET_ALL_TREES = gql`
       numberOfApples
       numberOfLeaves
     }
+    importedBy {
+      id
+      userId {
+        id
+      }
+    }
   }
 }
 `;

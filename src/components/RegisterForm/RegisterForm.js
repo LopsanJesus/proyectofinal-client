@@ -64,7 +64,7 @@ const RegisterForm = () => {
       <h3>{t('registerTitle')}</h3>
 
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
-        {formError && <Alert variant="danger">{formError}</Alert>}
+        {formError && <Alert className="formError" variant="danger">{formError}</Alert>}
 
         <Form.Group controlId="formBasicName">
           <Form.Label>{t('form.name')}</Form.Label>
@@ -81,7 +81,7 @@ const RegisterForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="formBasicName">
+        <Form.Group controlId="formBasicEmail">
           <Form.Label>{t('form.email')}</Form.Label>
           <Form.Control
             type="email"
@@ -139,7 +139,7 @@ const RegisterForm = () => {
           </Button>
         </Form.Group>
 
-        <Form.Group controlId="checkRegistered">
+        <Form.Group controlId="alreadyRegistered" className="alreadyRegistered">
           <Link to="/login">
             <Button variant="outline-primary">
               ¿Ya tiene cuenta?

@@ -82,7 +82,7 @@ const CreateTreeForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="formBasicName">
+        <Form.Group controlId="formBasicSourceLang">
           <Form.Label>Idioma origen</Form.Label>
           <Form.Control
             as="select"
@@ -101,7 +101,7 @@ const CreateTreeForm = () => {
         </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="formBasicName">
+        <Form.Group controlId="formBasicTargetLang">
           <Form.Label>Idioma a practicar</Form.Label>
           <Form.Control
             as="select"

@@ -34,7 +34,7 @@ const TopBar = ({
         </Nav>
         <Nav id="right-nav">
           {user ? <>
-            <Navbar.Text>{user && user.name}</Navbar.Text>
+            <Navbar.Text className="Username">{user && user.name}</Navbar.Text>
             <NavDropdown
               title={
                 <span>

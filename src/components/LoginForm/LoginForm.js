@@ -105,7 +105,7 @@ const LoginForm = ({ user, saveUserInfo }) => {
           </Button>
         </Form.Group>
 
-        <Form.Group controlId="checkRegistered">
+        <Form.Group controlId="needAccount" className="needAccount">
           <Link to="/register">
             <Button variant="outline-primary">
               ¿No tiene cuenta todavía?

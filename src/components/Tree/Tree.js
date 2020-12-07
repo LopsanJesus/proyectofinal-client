@@ -59,7 +59,7 @@ const Tree = ({ user }) => {
       {data.getTree.sourceLang.name}
       <BranchList branches={data.getTree.branches} isImported={checked !== ""} />
 
-      {data.getTree.owner.id === user.id && <CreateBranchButton />}
+      {data.getTree.owner.id === user.id && <CreateBranchButton treeId={params.id} />}
     </Container>
   );
 };

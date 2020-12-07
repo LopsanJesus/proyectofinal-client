@@ -5,10 +5,10 @@ import { PlusCircle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import './CreateBranchButton.scss';
 
-const CreateBranchButton = () => {
+const CreateBranchButton = ({ treeId }) => {
   //const { t } = useTranslation();
   return (
-    <Link to="/create-branch">
+    <Link to={"/create-branch/" + treeId}>
       <Card className="createTreeButton">
         <Card.Body>
           <PlusCircle size={30} className="plusIcon" />

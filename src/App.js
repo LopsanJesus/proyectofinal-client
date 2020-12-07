@@ -20,9 +20,10 @@ import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
 import "./config/i18n";
 import SafetyChecker from "./SafetyChecker";
+import CreateTreeForm from "./components/CreateTreeForm";
+import CreateBranchForm from "./components/CreateBranchForm";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CreateTreeForm from "./components/CreateTreeForm/CreateTreeForm";
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_API_URL,
@@ -63,6 +64,9 @@ function App() {
                   </ProtectedRoute>
                   <ProtectedRoute exact path="/create-tree">
                     <CreateTreeForm />
+                  </ProtectedRoute>
+                  <ProtectedRoute exact path="/create-branch/:treeId">
+                    <CreateBranchForm />
                   </ProtectedRoute>
                   <Route path="/tree/:id">
                     <Tree />

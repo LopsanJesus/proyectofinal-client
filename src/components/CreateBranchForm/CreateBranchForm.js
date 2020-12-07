@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 // import { useTranslation } from 'react-i18next';
 // import { useParams } from 'react-router-dom';
-import appConfig from "../../config/app";
+// import appConfig from "../../config/app";
 
 import './CreateBranchForm.scss';
 
-const EmptyLine = () => {
+const EmptyLine = ({ line }) => {
   return (<Row>
     <Col>
       <Form.Control
@@ -30,7 +30,7 @@ const CreateBranchForm = () => {
   const emailRef = useRef(null);
   const [validated, setValidated] = useState(false);
   const [formError, /*setFormError*/] = useState("");
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
 
   const HandleSubmit = async (event) => {
     event.preventDefault();
@@ -51,18 +51,14 @@ const CreateBranchForm = () => {
     }
   };
 
-  const addNewLine = () => {
-    console.log(fields);
-    const array = fields;
-    array.push(<EmptyLine />);
-    setFields(array);
+  function addNewLine() {
+    const newLine = { word: "", translation: "" }
+    setFields([...fields, newLine]);
+    console.log(fields)
   };
 
-  for (let index = 0; index < appConfig.minimumNumberOfLeaves; index++) {
-    fields.push(<EmptyLine />);
-  }
-
   return (
+
     <Container as={Col} md={{ span: 10, offset: 1 }} lg={{ span: 6, offset: 3 }}>
 
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
@@ -80,7 +76,11 @@ const CreateBranchForm = () => {
             Por favor introduzca un nombre válido.
         </Form.Control.Feedback>
         </Form.Group>
-
+        <Form.Group as={Row}>
+          <Col>
+            <Button variant="primary" onClick={() => addNewLine()}>Añadir línea</Button>
+          </Col>
+        </Form.Group>
         <Form.Group as={Row} controlId="formBasicName">
           <Form.Label as={Col}>Palabra</Form.Label>
           <Form.Label as={Col}>Traducción</Form.Label>
@@ -88,17 +88,13 @@ const CreateBranchForm = () => {
 
         <Form.Group controlId="formBasicName">
           {
-            fields.map((line) => {
-              return line
+            fields.map(() => {
+              return <EmptyLine />
             })
           }
         </Form.Group>
 
-        <Form.Group as={Row}>
-          <Col>
-            <Button variant="secondary" onClick={addNewLine}>Añadir línea</Button>
-          </Col>
-        </Form.Group>
+
 
         <Form.Group>
           <Button variant="primary" type="submit">
@@ -115,7 +111,6 @@ const CreateBranchForm = () => {
               )}
           </Button>
         </Form.Group>
-
       </Form>
     </Container>
   );

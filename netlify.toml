@@ -2,16 +2,19 @@
     command = "npm run build"
     publish = "/build"
     base = "/"
+    [build.environment]
+        CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+        TERM = "xterm"
 
 [[redirects]]
     from = "/*"
     to = "/index.html"
     status = 200
 
-[build.environment]
-    CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
-    TERM = "xterm"
-
 
 [[plugins]]
     package = "netlify-plugin-cypress"
+    [plugins.inputs.preBuild]
+        start = 'npm start'
+        wait-on = 'http://localhost:3000'
+        wait-on-timeout = '30' # seconds

@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('autoLogin', () => {
-    cy.visit("/login");
+    cy.visit("http://localhost:3000/login");
 
     cy.get("#formBasicEmail").type("test@e2e.com");
     cy.get("#formBasicPassword").type("treelang");

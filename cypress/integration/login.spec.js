@@ -1,6 +1,6 @@
 context("Login", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/login");
+        cy.visit("/login");
     });
 
     it("can login", () => {

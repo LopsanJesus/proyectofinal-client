@@ -1,15 +1,9 @@
 [build]
     command = "npm run build"
     publish = "/build"
-
-[build.environment]
-    CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
-    TERM = "xterm"
+    base = "/"
 
 [[redirects]]
     from = "/*"
     to = "/index.html"
-    status = 200
-
-[[plugins]]
-    package = "netlify-plugin-cypress"
+    status = 200 

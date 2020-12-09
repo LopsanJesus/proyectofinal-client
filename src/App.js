@@ -12,7 +12,6 @@ import Branch from "./components/Branch";
 import TopBar from "./components/TopBar";
 import MyForest from "./components/MyForest";
 import Tree from "./components/Tree";
-import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -99,7 +98,6 @@ function App() {
                   <Redirect to="/" />
                 </Switch>
               </div>
-              <Footer />
             </div>
           </Router>
         </SafetyChecker>

@@ -1,10 +1,27 @@
 {
-    "letsStart": "Let's Start!",
     "my_forest": "My Forest",
-    "about": "About",
     "profile": "Profile",
     "logout": "Log Out",
     "registerTitle": "New User",
+    "home": {
+        "welcome": "Welcome to Treelang!",
+        "inTreelangTitle": "In Treelang you might find:",
+        "learning": "Learning",
+        "fun": "Fun",
+        "muchmore": "And much more",
+        "letsStart": "Let's Start!",
+        "knowMoreAboutUs": "Want to know about us?",
+        "about": "About",
+        "changeLanguage": "Change language:"
+    },
+    "about": {
+        "daw": "Web Application Deployment",
+        "repositories": "Repositories",
+        "client": "Client",
+        "server": "Server",
+        "links": "Links:",
+        "playground": "GraphQL Playground"
+    },
     "treeList": {
         "createdBy": "Created by",
         "addTree": "Add Tree"
@@ -27,6 +44,13 @@
     "language": "Language",
     "languages": {
         "english": "English",
-        "spanish": "Spanish"
+        "spanish": "Spanish",
+        "codes": {
+            "en": "English",
+            "fr": "French",
+            "es": "Spanish",
+            "de": "German",
+            "it": "Italian"
+        }
     }
 }

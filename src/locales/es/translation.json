@@ -1,10 +1,27 @@
 {
-    "letsStart": "¡Empecemos!",
     "my_forest": "Mi Bosque",
-    "about": "Contacto",
     "profile": "Perfil",
     "logout": "Cerrar sesión",
     "registerTitle": "Nuevo Usuario",
+    "home": {
+        "welcome": "¡Bienvenido a Treelang!",
+        "inTreelangTitle": "En Treelang podrá encontrar:",
+        "learning": "Aprendizaje",
+        "fun": "Diversión",
+        "muchmore": "Y mucho más",
+        "letsStart": "¡Empecemos!",
+        "knowMoreAboutUs": "¿Quieres saber más sobre nosotros?",
+        "about": "Contacto",
+        "changeLanguage": "Cambiar idioma:"
+    },
+    "about": {
+        "daw": "Despliegue de Aplicaciones Web",
+        "repositories": "Repositorios",
+        "client": "Cliente",
+        "server": "Servidor",
+        "links": "Enlaces:",
+        "playground": "GraphQL Playground"
+    },
     "treeList": {
         "createdBy": "Creado por",
         "addTree": "Añadir árbol"
@@ -27,6 +44,13 @@
     "language": "Idioma",
     "languages": {
         "english": "Inglés",
-        "spanish": "Español"
+        "spanish": "Español",
+        "codes": {
+            "en": "Inglés",
+            "fr": "Francés",
+            "es": "Español",
+            "de": "Alemán",
+            "it": "Italiano"
+        }
     }
 }

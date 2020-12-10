@@ -25,26 +25,26 @@ const Practice = ({ user }) => {
   if (loading) return <div>Loading questions...</div>;
   if (error) return <div>Error!</div>;
 
-  const importedTree = data.getTree.importedBy.find((importedTree) =>
-    importedTree.userId.id === user.id
-  );
+  // const importedTree = data.getTree.importedBy.find((importedTree) =>
+  //   importedTree.userId.id === user.id
+  // );
 
   const handleFinish = () => {
     var answersTemp = [];
     var correctAnswers = [];
 
     Array.from(translationsRef.current.childNodes).map((leaf) => {
-      answersTemp[leaf.childNodes[0].innerText] = leaf.childNodes[1].childNodes[0].value
+      return answersTemp[leaf.childNodes[0].innerText] = leaf.childNodes[1].childNodes[0].value
     })
 
     var scoreCount = 0;
 
     leaves.map((leaf) => {
       if (answersTemp[leaf.name].toLowerCase() === leaf.translation.toLowerCase()) {
-        correctAnswers[leaf.name] = true;
         scoreCount++;
+        return correctAnswers[leaf.name] = true;
       } else {
-        correctAnswers[leaf.name] = false;
+        return correctAnswers[leaf.name] = false;
       }
     })
 
@@ -58,7 +58,7 @@ const Practice = ({ user }) => {
 
   data.getTree.branches.map((branch) => {
     return branch.leaves.map((leaf) => {
-      leaves = [...leaves, leaf];
+      return leaves = [...leaves, leaf];
     });
   });
 
@@ -107,9 +107,8 @@ const Practice = ({ user }) => {
         <>
           Score: {score}
           {
-            answers.map((value, index) => {
-              return <p>{value}</p>;
-            })
+            answers.map((value, index) => <p><Alert></Alert>{value}</p>)}
+          { correctArray.map((value, index) => <p><Alert></Alert>{value}</p>)
           }
         </>
       }

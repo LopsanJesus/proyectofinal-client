@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './Profile.scss';
 
-import { Badge, Row } from "react-bootstrap";
+import { /*Badge,*/ Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 

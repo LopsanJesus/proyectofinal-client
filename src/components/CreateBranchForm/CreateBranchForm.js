@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { connect } from "react-redux";
 import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import EmptyLine from '../EmptyLine';
 // import appConfig from "../../config/app";
@@ -12,13 +12,13 @@ import { CREATE_BRANCH } from "../../queries/forest";
 import './CreateBranchForm.scss';
 
 const CreateBranchForm = ({ user }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const params = useParams();
   let history = useHistory();
 
   const nameRef = useRef(null);
   const leavesList = useRef(null);
-  const [validated, setValidated] = useState(false);
+  const [validated/*, setValidated*/] = useState(false);
   const [formError, setFormError] = useState("");
   const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
 
@@ -53,7 +53,7 @@ const CreateBranchForm = ({ user }) => {
   const getLeaves = () => {
     let array = [];
     fields.map((_, index) => {
-      array.push(leavesList.current.childNodes[index].childNodes[0].childNodes[0].value);
+      return array.push(leavesList.current.childNodes[index].childNodes[0].childNodes[0].value);
     });
     return array;
   }
@@ -61,7 +61,7 @@ const CreateBranchForm = ({ user }) => {
   const getLeavesTranslation = () => {
     let array = [];
     fields.map((_, index) => {
-      array.push(leavesList.current.childNodes[index].childNodes[1].childNodes[0].value);
+      return array.push(leavesList.current.childNodes[index].childNodes[1].childNodes[0].value);
     })
     return array;
   }

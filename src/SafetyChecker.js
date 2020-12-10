@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { GET_ME } from "./queries/user";
 import { useQuery } from "@apollo/client";

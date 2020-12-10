@@ -10,10 +10,8 @@ const ProtectedRoute = ({
   ...props
 }) => {
 
-  if (!user) {
-    console.log("if1 de protectedRouyte");
+  if (!user)
     return <Redirect to={"/login" + location.pathname} />;
-  }
 
   return <Route {...props}>{children}</Route>;
 };

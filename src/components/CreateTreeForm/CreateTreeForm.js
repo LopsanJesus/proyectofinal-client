@@ -37,9 +37,6 @@ const CreateTreeForm = () => {
     event.preventDefault();
     event.stopPropagation();
 
-    console.log(parseInt(sourceLangRef.current.value));
-    console.log(parseInt(targetLangRef.current.value));
-
     const form = event.currentTarget;
 
     setValidated(true);

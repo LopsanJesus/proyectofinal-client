@@ -9,8 +9,7 @@ import { userLogout } from './actions/root';
 const SafetyChecker = ({
     user,
     saveUserInfo,
-    children,
-    ...props
+    children
 }) => {
     const { loading, error, data } = useQuery(GET_ME, {
         fetchPolicy: "network-only"
@@ -27,7 +26,7 @@ const SafetyChecker = ({
         });
     }
 
-    return <Fragment {...props}>{children}</Fragment>;
+    return <div> {children}</div>;
 };
 
 const mapStateToProps = ({ userInfo }) => {

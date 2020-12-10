@@ -24,6 +24,7 @@ const MyForest = ({ user, trees, saveUserForest }) => {
 
   return (
     <Container fluid className="MyForest">
+      <h2 className="header-title">Mi Bosque</h2>
       <TreeList user={user} trees={trees} view="myForest" />
       <CreateTreeButton />
     </Container>

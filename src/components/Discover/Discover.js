@@ -18,7 +18,6 @@ const Discover = ({ user }) => {
   if (loading) return <div>Haciendo crecer los árboles... (Sin materiales radiactivos)</div>
   if (error) return <div>ERROR. No podemos encontrar el bosque en el mapa.</div>
 
-  console.log()
   const trees = data.getAllTrees
     .filter((tree) => {
       if (user) {
@@ -42,7 +41,7 @@ const Discover = ({ user }) => {
     });
 
   return <>
-    <h2>{t('discover.title')}</h2>
+    <h2 className="header-title">{t('discover.title')}</h2>
     <Container fluid className="Discover">
       {/* {branchList.map((branch) => {
         return <SearchTreeCard key={branch.id} tree={branch} />;

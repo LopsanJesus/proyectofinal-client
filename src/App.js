@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import Branch from "./components/Branch";
 import TopBar from "./components/TopBar";
 import MyForest from "./components/MyForest";
+import Practice from "./components/Practice";
 import Tree from "./components/Tree";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
@@ -58,36 +59,46 @@ function App() {
 
               <div className="content">
                 <Switch>
+
+                  <ProtectedRoute path="/practice/:id">
+                    <Practice />
+                  </ProtectedRoute>
+
+                  <Route path="/discover">
+                    <Discover />
+                  </Route>
                   <ProtectedRoute exact path="/my-forest">
                     <MyForest />
                   </ProtectedRoute>
+
                   <ProtectedRoute exact path="/create-tree">
                     <CreateTreeForm />
                   </ProtectedRoute>
                   <ProtectedRoute exact path="/create-branch/:treeId">
                     <CreateBranchForm />
                   </ProtectedRoute>
+
                   <Route path="/tree/:id">
                     <Tree />
                   </Route>
                   <Route path="/branch/:id">
                     <Branch />
                   </Route>
-                  <Route path="/discover">
-                    <Discover />
-                  </Route>
+
                   <ProtectedRoute exact path="/profile">
                     <Profile />
                   </ProtectedRoute>
                   <Route exact path="/about">
                     <About />
                   </Route>
+
                   <Route path="/login/:redirect?">
                     <LoginForm />
                   </Route>
                   <Route path="/register">
                     <RegisterForm />
                   </Route>
+
                   <ProtectedRoute exact path="/logout">
                     <Logout />
                   </ProtectedRoute>

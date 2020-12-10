@@ -1,64 +1,77 @@
 import React, { useRef, useState } from 'react';
+import { connect } from "react-redux";
 import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
-// import { useTranslation } from 'react-i18next';
-// import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useHistory, useParams } from 'react-router-dom';
+import EmptyLine from '../EmptyLine';
 // import appConfig from "../../config/app";
+
+import { useMutation } from "@apollo/client";
+import { CREATE_BRANCH } from "../../queries/forest";
 
 import './CreateBranchForm.scss';
 
-const EmptyLine = ({ line }) => {
-  return (<Row>
-    <Col>
-      <Form.Control
-        type="text"
-        required
-      />
-    </Col>
-    <Col>
-      <Form.Control
-        type="text"
-        required
-      />
-    </Col>
-  </Row>);
-}
+const CreateBranchForm = ({ user }) => {
+  const { t } = useTranslation();
+  const params = useParams();
+  let history = useHistory();
 
-const CreateBranchForm = () => {
-  // const { t } = useTranslation();
-  // const params = useParams();
-
-  const emailRef = useRef(null);
+  const nameRef = useRef(null);
+  const leavesList = useRef(null);
   const [validated, setValidated] = useState(false);
-  const [formError, /*setFormError*/] = useState("");
+  const [formError, setFormError] = useState("");
   const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
+
+  const [createBranchMutation, { loading }] = useMutation(CREATE_BRANCH, {
+    onError(error) {
+      setFormError(error.message);
+    },
+    onCompleted(result) {
+      history.push("/tree/" + params.treeId);
+    },
+  });
 
   const HandleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const form = event.currentTarget;
-    setValidated(true);
-
-    if (form.checkValidity()) {
-      const confirmation = window.confirm("¿Está seguro? Esta acción no se puede deshacer.");
-      return confirmation;
-      // loginMutation({
-      //   variables: {
-      //     email: emailRef.current.value,
-      //     password: passwordRef.current.value,
-      //   },
-      // });
+    const confirmation = window.confirm("¿Está seguro? Esta acción no se puede deshacer.");
+    if (!confirmation)
+      return confirmation
+    else {
+      createBranchMutation({
+        variables: {
+          tree: parseInt(params.treeId),
+          name: nameRef.current.value,
+          names: getLeaves(),
+          translations: getLeavesTranslation()
+        },
+      });
     }
   };
+
+  const getLeaves = () => {
+    let array = [];
+    fields.map((_, index) => {
+      array.push(leavesList.current.childNodes[index].childNodes[0].childNodes[0].value);
+    });
+    return array;
+  }
+
+  const getLeavesTranslation = () => {
+    let array = [];
+    fields.map((_, index) => {
+      array.push(leavesList.current.childNodes[index].childNodes[1].childNodes[0].value);
+    })
+    return array;
+  }
 
   function addNewLine() {
     const newLine = { word: "", translation: "" }
     setFields([...fields, newLine]);
-    console.log(fields)
   };
 
   return (
-
     <Container as={Col} md={{ span: 10, offset: 1 }} lg={{ span: 6, offset: 3 }}>
 
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
@@ -69,7 +82,7 @@ const CreateBranchForm = () => {
           <Form.Control
             type="text"
             placeholder="Introduzca el nombre"
-            ref={emailRef}
+            ref={nameRef}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -86,19 +99,17 @@ const CreateBranchForm = () => {
           <Form.Label as={Col}>Traducción</Form.Label>
         </Form.Group>
 
-        <Form.Group controlId="formBasicName">
+        <Form.Group ref={leavesList}>
           {
-            fields.map(() => {
-              return <EmptyLine />
+            fields.map((_, index) => {
+              return <EmptyLine key={index} number={index} />
             })
           }
         </Form.Group>
 
-
-
         <Form.Group>
           <Button variant="primary" type="submit">
-            {/*loading*/false ? (
+            {loading ? (
               <Spinner
                 as="span"
                 animation="border"
@@ -116,4 +127,10 @@ const CreateBranchForm = () => {
   );
 };
 
-export default CreateBranchForm;
+const mapStateToProps = ({ userInfo }) => {
+  return {
+    user: userInfo.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(CreateBranchForm);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BranchList from "../BranchList";
 import CreateBranchButton from "../CreateBranchButton";
 import Container from "react-bootstrap/Container";
@@ -10,6 +10,7 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
 import "./Tree.scss";
+import { Button, Image } from "react-bootstrap";
 
 const Tree = ({ user }) => {
   const params = useParams();
@@ -25,7 +26,7 @@ const Tree = ({ user }) => {
       alert("Error al importar" + error);
     },
     onCompleted() {
-      console.log("Importado correctamente");
+      // console.log("Importado correctamente");
     },
   });
 
@@ -48,15 +49,32 @@ const Tree = ({ user }) => {
 
   return (
     <Container fluid className="Tree">
-      <h3>
+      <h3 className="tree-header">
+        <Image
+          src={"/" + data.getTree.sourceLang.code + ".png"}
+          className="language-flag source-language-flag"
+          title="Already known"
+          roundedCircle
+        />
+        <span className="arrow">&#8680;</span>
+        <Image
+          src={"/" + data.getTree.targetLang.code + ".png"}
+          className="language-flag target-language-flag"
+          title="Learning"
+          roundedCircle
+        />
         {data.getTree.name}
         <span
           className={"fa fa-star " + checked}
           onClick={handleStarClick}
           title="Añadir a Mi Bosque"
         ></span>
+        {checked &&
+          <Link to={"/practice/" + params.id}>
+            <Button variant="primary">Practicar</Button>
+          </Link>
+        }
       </h3>
-      {data.getTree.sourceLang.name}
       <BranchList branches={data.getTree.branches} isImported={checked !== ""} />
 
       {data.getTree.owner.id === user.id && <CreateBranchButton treeId={params.id} />}

@@ -18,18 +18,18 @@ const TopBar = ({
   return (
     <Navbar bg="light" variant="light" expand="sm" sticky="top">
       <Navbar.Brand>
-        <Link to="/">{appConfig.title}</Link>
+        <Link to="/"><img src="/treelang-title.png" alt={appConfig.title} /></Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link className="mr-auto">
+          <Nav.Item className="mr-auto">
             <Link to="/discover">{t('discover.link')}</Link>
-          </Nav.Link>
+          </Nav.Item>
           {user && <>
-            <Nav.Link className="mr-auto">
+            <Nav.Item className="mr-auto">
               <Link to="/my-forest">{t('my_forest')}</Link>
-            </Nav.Link>
+            </Nav.Item>
           </>}
         </Nav>
         <Nav id="right-nav">

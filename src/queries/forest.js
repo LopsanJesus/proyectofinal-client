@@ -20,8 +20,6 @@ export const GET_MY_FOREST = gql`
         branches {
           id
           name
-          numberOfApples
-          numberOfLeaves
         }
     }
   }
@@ -47,8 +45,6 @@ export const GET_ALL_TREES = gql`
     branches {
       id
       name
-      numberOfApples
-      numberOfLeaves
     }
     importedBy {
       id
@@ -80,14 +76,46 @@ query getTreeQuery($id: Int!){
     branches {
       id
       name
-      numberOfApples
-      numberOfLeaves
+      leaves {
+        id
+        name
+        translation
+        leafRecords {
+          isApple
+          importedTree {
+            userId{
+              id
+            }
+          }
+        }
+    }
     }
     importedBy {
       id
       customName
       userId {
         id
+      }
+    }
+  }
+}
+`;
+
+export const GET_BRANCH = gql`
+query getBranchQuery($id: Int!){
+  getBranch (id: $id){
+    name
+    leaves {
+      id
+      name
+      translation
+      leafRecords {
+        isApple
+        importedTree {
+          userId{
+            id
+          }
+        }
       }
     }
   }
@@ -108,5 +136,11 @@ mutation createTreeMutation($name: String!, $sourceLang: Int!, $targetLang: Int!
     id
     name
   }
+}
+`;
+
+export const CREATE_BRANCH = gql`
+mutation createBranchMutation($tree: Int!, $name: String!, $names: [String!]!, $translations: [String!]!) {
+  createBranch(tree: $tree, name: $name, names: $names, translations: $translations)
 }
 `;

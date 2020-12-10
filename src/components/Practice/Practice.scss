@@ -1,0 +1,32 @@
+.next-button {
+    margin: 2em;
+}
+.Practice {
+    .list-group {
+        text-align: left;
+        width: 70%;
+        margin: 0 auto;
+    
+        .list-group-item {
+            width: 70%;
+            margin: 0 auto;
+            .leaf-name{
+                display: inline;
+                width: 49%;
+            }
+            .leaf-input {
+                display: inline;
+                width: 49%;
+            }
+            .leaf-input input{
+                display: inline;
+                width: 49%;
+                float: right;
+            }
+        }
+    }
+}
+
+.container {
+    margin-top: 2em;
+}

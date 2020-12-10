@@ -36,15 +36,14 @@ const Profile = ({ user }) => {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row}>
+      {/* <Form.Group as={Row}>
         <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>
           <Form.Label>{t('form.numberOfApples')}</Form.Label>
         </Col>
         <Col md={{ span: 6, offset: 3 }} lg={{ span: 3, offset: 0 }}>
-          {/* <Form.Control plaintext readOnly defaultValue="634" /> */}
           <h5><Badge variant="danger">634</Badge></h5>
         </Col>
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group as={Row}>
         <Col md={{ span: 6, offset: 3 }} lg={{ span: 2, offset: 4 }}>

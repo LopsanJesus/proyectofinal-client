@@ -27,6 +27,18 @@
     }
 }
 
+.practice-score {
+    width: 50%;
+    margin: 0 auto;
+    .score-title {
+        margin-bottom: 2em;
+    }
+
+    .try {
+        margin-left: 3em;
+    }
+}
+
 .container {
     margin-top: 2em;
 }

@@ -21,7 +21,7 @@ query getQuestionsQuery($id: Int!){
 
 export const RECORD_TEST = gql`
   mutation recordTestMutation($id: Int!) {
-    importTree(id: $id) {
+    recordTest(id: $id) {
       customName
     }
   }

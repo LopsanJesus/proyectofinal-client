@@ -15,8 +15,6 @@ const BranchCard = ({ user, branch, isImported }) => {
     ).length;
   });
 
-
-
   return (
     <Link to={"/branch/" + branch.id}>
       <Card className="branch">

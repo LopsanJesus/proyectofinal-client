@@ -2,16 +2,17 @@ import React, { useRef, useState } from 'react';
 import { connect } from "react-redux";
 import { Alert, Button, Col, Container, Form, ListGroup, Row } from 'react-bootstrap';
 import './Practice.scss';
-import { GET_QUESTIONS } from "../../queries/practice";
-import { useQuery } from "@apollo/client";
-import { useParams } from 'react-router-dom';
+import { GET_QUESTIONS, RECORD_TEST } from "../../queries/practice";
+import { useMutation, useQuery } from "@apollo/client";
+import { Link, useParams } from 'react-router-dom';
+import appConfig from '../../config/app';
 
 const Practice = ({ user }) => {
   const params = useParams();
   const [view, setView] = useState("preview");
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [correctArray, setCorrectArray] = useState([]);
+  // const [correctArray, setCorrectArray] = useState([]);
 
   const translationsRef = useRef(null);
 
@@ -22,34 +23,67 @@ const Practice = ({ user }) => {
     }
   });
 
+
+  const [recordTestMutation] = useMutation(RECORD_TEST, {
+    onError(error) {
+      console.log(error);
+    },
+    onCompleted(result) {
+
+    },
+  });
+
   if (loading) return <div>Loading questions...</div>;
   if (error) return <div>Error!</div>;
 
-  // const importedTree = data.getTree.importedBy.find((importedTree) =>
-  //   importedTree.userId.id === user.id
-  // );
+  const importedTree = data.getTree.importedBy.find((importedTree) =>
+    importedTree.userId.id === user.id
+  );
 
   const handleFinish = () => {
     var answersTemp = [];
     var correctAnswers = [];
 
     Array.from(translationsRef.current.childNodes).map((leaf) => {
-      return answersTemp[leaf.childNodes[0].innerText] = leaf.childNodes[1].childNodes[0].value
+      return answersTemp = [...answersTemp, { name: leaf.childNodes[0].innerText, translation: leaf.childNodes[1].childNodes[0].value }];
     })
 
     var scoreCount = 0;
 
     leaves.map((leaf) => {
-      if (answersTemp[leaf.name].toLowerCase() === leaf.translation.toLowerCase()) {
-        scoreCount++;
-        return correctAnswers[leaf.name] = true;
-      } else {
-        return correctAnswers[leaf.name] = false;
-      }
+      var hit = false;
+      var attempt = "";
+
+      answersTemp.map((answer) => {
+        if (answer.name === leaf.name) {
+          attempt = answer.translation;
+          if (answer.translation.toLowerCase() === leaf.translation.toLowerCase()) {
+            hit = true;
+            scoreCount++;
+          }
+        }
+        return null;
+      });
+
+      return correctAnswers = [...correctAnswers, {
+        name: leaf.name,
+        translation: leaf.translation,
+        correct: hit,
+        answer: attempt
+      }];
     })
 
-    setAnswers(answersTemp);
-    setCorrectArray(correctAnswers);
+    recordTestMutation({
+      variables: {
+        score: score,
+        numberOfLeaves: appConfig.testNumberOfQuestions,
+        names: correctAnswers.map(({ name }) => name),
+        translations: correctAnswers.map((translation) => translation),
+        importedTreeId: importedTree.id
+      }
+    });
+
+    setAnswers(correctAnswers);
     setScore(scoreCount);
     setView("score");
   }
@@ -62,7 +96,7 @@ const Practice = ({ user }) => {
     });
   });
 
-  leaves = leaves.sort(() => Math.random() - 0.5).slice(0, 10);
+  leaves = leaves.sort(() => Math.random() - 0.5).slice(0, appConfig.testNumberOfQuestions);
 
   return (
     <>
@@ -104,13 +138,27 @@ const Practice = ({ user }) => {
       }
       {
         view === "score" &&
-        <>
-          Score: {score}
+        <div className="practice-score">
+          <h1 className="score-title">Score: {score}</h1>
           {
-            answers.map((value, index) => <p><Alert></Alert>{value}</p>)}
-          { correctArray.map((value, index) => <p><Alert></Alert>{value}</p>)
+            answers.length > 0 ?
+              answers.map((answer) => {
+                return (
+                  <Alert
+                    variant={answer.correct ? "success" : "danger"}
+                  >
+                    {answer.name}: <strong>{answer.translation}</strong>
+                    <span className="try">Your try: {answer.answer}</span>
+                  </Alert>
+                )
+              })
+              :
+              <div>No hay respuestas</div>
           }
-        </>
+          <Link to={"/tree/" + params.id}>
+            <Button variant="primary">Volver</Button>
+          </Link>
+        </div>
       }
     </>
   );

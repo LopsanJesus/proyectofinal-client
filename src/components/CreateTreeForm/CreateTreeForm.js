@@ -10,7 +10,7 @@ import { CREATE_TREE } from "../../queries/forest";
 const languages = [
   { id: 1, name: "Español" },
   { id: 2, name: "Inglés" },
-  { id: 3, name: "Aleman" },
+  { id: 3, name: "Francés" },
 ]
 
 const CreateTreeForm = () => {

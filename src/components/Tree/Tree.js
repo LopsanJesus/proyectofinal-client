@@ -33,7 +33,7 @@ const Tree = ({ user }) => {
   if (loadingTree) return <div>Loading...</div>
   if (error) return <div>ERROR. Ese árbol no existe.</div>
 
-  if (!checked && data.getTree.importedBy.filter((importedTree) => importedTree.userId.id === user.id).length > 0)
+  if (!checked && user && data.getTree.importedBy.filter((importedTree) => importedTree.userId.id === user.id).length > 0)
     setChecked("checked");
 
   const handleStarClick = () => {
@@ -64,11 +64,12 @@ const Tree = ({ user }) => {
           roundedCircle
         />
         {data.getTree.name}
-        <span
-          className={"fa fa-star " + checked}
-          onClick={handleStarClick}
-          title="Añadir a Mi Bosque"
-        ></span>
+        {user &&
+          <span
+            className={"fa fa-star " + checked}
+            onClick={handleStarClick}
+            title="Añadir a Mi Bosque"
+          ></span>}
         {checked &&
           <Link to={"/practice/" + params.id}>
             <Button variant="primary">Practicar</Button>
@@ -77,7 +78,7 @@ const Tree = ({ user }) => {
       </h3>
       <BranchList branches={data.getTree.branches} isImported={checked !== ""} />
 
-      {data.getTree.owner.id === user.id && <CreateBranchButton treeId={params.id} />}
+      {user && data.getTree.owner.id === user.id && <CreateBranchButton treeId={params.id} />}
     </Container>
   );
 };

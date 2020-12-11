@@ -9,7 +9,8 @@ import "./BranchCard.scss";
 
 const BranchCard = ({ user, branch, isImported }) => {
   let numberOfApples = 0;
-  branch.leaves.map((leaf) => {
+
+  user && branch.leaves.map((leaf) => {
     return numberOfApples += leaf.leafRecords.filter((record) =>
       record.isApple && record.importedTree.userId.id === user.id
     ).length;

@@ -72,7 +72,10 @@ const Tree = ({ user }) => {
           ></span>}
         {checked &&
           <Link to={"/practice/" + params.id}>
-            <Button variant="primary">Practicar</Button>
+            <Button
+              variant="primary"
+            //Comprobar que hay alguna hoja
+            >Practicar</Button>
           </Link>
         }
       </h3>

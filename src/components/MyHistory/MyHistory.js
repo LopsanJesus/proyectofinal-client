@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from "react-redux";
 import './MyHistory.scss';
 import { GET_MY_HISTORY } from "../../queries/practice";
 import { Badge, Container, ListGroup } from 'react-bootstrap';

@@ -49,7 +49,12 @@ const Tree = ({ user }) => {
 
   return (
     <Container fluid className="Tree">
-      {!checked &&
+      {!user &&
+        <Alert variant="warning">
+          Necesitas acceder a tu cuenta para practicar
+        </Alert>
+      }
+      {user && !checked &&
         <Alert variant="primary">
           ¡Añádelo a Mi Bosque haciendo click en la estrella!
         </Alert>

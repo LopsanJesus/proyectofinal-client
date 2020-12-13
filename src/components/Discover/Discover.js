@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import './Discover.scss';
 import { useTranslation } from 'react-i18next';
-import { Container } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import TreeList from "../TreeList";
 
 import { GET_ALL_TREES } from "../../queries/forest";

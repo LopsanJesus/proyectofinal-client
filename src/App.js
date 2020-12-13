@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import Branch from "./components/Branch";
 import TopBar from "./components/TopBar";
 import MyForest from "./components/MyForest";
+import MyHistory from "./components/MyHistory";
 import Practice from "./components/Practice";
 import Tree from "./components/Tree";
 import LoginForm from "./components/LoginForm";
@@ -69,6 +70,9 @@ function App() {
                   </Route>
                   <ProtectedRoute exact path="/my-forest">
                     <MyForest />
+                  </ProtectedRoute>
+                  <ProtectedRoute exact path="/my-history">
+                    <MyHistory />
                   </ProtectedRoute>
 
                   <ProtectedRoute exact path="/create-tree">

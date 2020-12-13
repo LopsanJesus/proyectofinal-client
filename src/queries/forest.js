@@ -1,5 +1,14 @@
 import { gql } from "@apollo/client";
 
+export const GET_ALL_LANGUAGES = gql`
+{
+  getAllLanguages {
+    id
+    code
+  }
+}
+`;
+
 export const GET_MY_FOREST = gql`
 {
   getMyForest {

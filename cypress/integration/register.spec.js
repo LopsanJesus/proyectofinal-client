@@ -2,7 +2,7 @@ var faker = require('faker');
 
 context("Register", () => {
     beforeEach(() => {
-        cy.visit("/register");
+        cy.visit("http://localhost:3000/register");
     });
 
     it("can register", () => {

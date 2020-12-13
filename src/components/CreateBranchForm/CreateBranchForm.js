@@ -26,7 +26,7 @@ const CreateBranchForm = ({ user }) => {
     onError(error) {
       setFormError(error.message);
     },
-    onCompleted(result) {
+    onCompleted() {
       history.push("/tree/" + params.treeId);
     },
   });
@@ -34,6 +34,18 @@ const CreateBranchForm = ({ user }) => {
   const HandleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
+    setFormError("");
+
+    if (fields.filter((_, index) => {
+      if (leavesList.current.childNodes[index].childNodes[0].childNodes[0].value === "" ||
+        leavesList.current.childNodes[index].childNodes[1].childNodes[0].value === "") {
+        return true
+      }
+      return false
+    }).length > 0) {
+      setFormError("No puede haber campos vacíos.");
+      return false;
+    }
 
     const confirmation = window.confirm("¿Está seguro? Esta acción no se puede deshacer.");
     if (!confirmation)

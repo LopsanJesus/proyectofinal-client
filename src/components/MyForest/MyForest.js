@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Container from "react-bootstrap/Container";
+import { Container, Button } from "react-bootstrap";
 
 import TreeList from "../TreeList";
 import CreateTreeButton from "../CreateTreeButton";
@@ -11,6 +11,7 @@ import { useQuery } from "@apollo/client";
 import { saveUserForest } from "../../actions/forest";
 
 import "./MyForest.scss";
+import { Link } from "react-router-dom";
 
 const MyForest = ({ user, trees, saveUserForest }) => {
   const { loading, error, data } = useQuery(GET_MY_FOREST, {
@@ -27,6 +28,12 @@ const MyForest = ({ user, trees, saveUserForest }) => {
       <h2 className="header-title">Mi Bosque</h2>
       <TreeList user={user} trees={trees} view="myForest" />
       <CreateTreeButton />
+      <p className="secondary-option">O bien, importa un árbol de otro usuario:</p>
+      <Link to="/discover">
+        <Button variant="primary">
+          Ir a Descubre
+        </Button>
+      </Link>
     </Container>
   );
 };

@@ -43,9 +43,6 @@ const Discover = ({ user }) => {
   return <>
     <h2 className="header-title">{t('discover.title')}</h2>
     <Container fluid className="Discover">
-      {/* {branchList.map((branch) => {
-        return <SearchTreeCard key={branch.id} tree={branch} />;
-      })} */}
       <TreeList user={user} trees={trees} view="discover" />
     </Container>
   </>;

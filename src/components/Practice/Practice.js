@@ -12,7 +12,6 @@ const Practice = ({ user }) => {
   const [view, setView] = useState("preview");
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState([]);
-  // const [correctArray, setCorrectArray] = useState([]);
 
   const translationsRef = useRef(null);
 
@@ -23,14 +22,11 @@ const Practice = ({ user }) => {
     }
   });
 
-
   const [recordTestMutation] = useMutation(RECORD_TEST, {
     onError(error) {
       console.log(error);
     },
-    onCompleted(result) {
-
-    },
+    onCompleted() { },
   });
 
   if (loading) return <div>Loading questions...</div>;
@@ -75,10 +71,14 @@ const Practice = ({ user }) => {
 
     recordTestMutation({
       variables: {
-        score: score,
+        score: scoreCount,
         numberOfLeaves: appConfig.testNumberOfQuestions,
         names: correctAnswers.map(({ name }) => name),
-        translations: correctAnswers.map((translation) => translation),
+        hits: correctAnswers.map(({ correct }) => {
+          if (correct)
+            return "correct"
+          return "incorrect"
+        }),
         importedTreeId: importedTree.id
       }
     });
@@ -102,6 +102,9 @@ const Practice = ({ user }) => {
     <>
       {view === "preview" &&
         <>
+          <h2 className="header-title">Práctica de {data.getTree.name}</h2>
+          <p>Prepárate para contestar las 10 preguntas correctamente</p>
+          <p>¡Suerte!</p>
           <Button className="next-button" onClick={() => { setView("practiceForm") }}>Start Test!</Button>
         </>
       }

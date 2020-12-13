@@ -10,7 +10,7 @@ import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
 import "./Tree.scss";
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Alert } from "react-bootstrap";
 
 const Tree = ({ user }) => {
   const params = useParams();
@@ -49,6 +49,20 @@ const Tree = ({ user }) => {
 
   return (
     <Container fluid className="Tree">
+      {!checked &&
+        <Alert variant="primary">
+          ¡Añádelo a Mi Bosque haciendo click en la estrella!
+        </Alert>
+      }
+      {!data.getTree.branches.find((branch) => {
+        return branch.leaves.find((leaf) => {
+          return leaf
+        })
+      }) &&
+        <Alert variant="warning">
+          Este árbol no tiene hojas, por lo que no podrás practicar
+        </Alert>
+      }
       <h3 className="tree-header">
         <Image
           src={"/" + data.getTree.sourceLang.code + ".png"}
@@ -74,7 +88,15 @@ const Tree = ({ user }) => {
           <Link to={"/practice/" + params.id}>
             <Button
               variant="primary"
-            //Comprobar que hay alguna hoja
+              disabled={
+                data.getTree.branches.find((branch) => {
+                  return branch.leaves.find((leaf) => {
+                    return leaf
+                  })
+                }) ?
+                  null
+                  : "disabled"
+              }
             >Practicar</Button>
           </Link>
         }

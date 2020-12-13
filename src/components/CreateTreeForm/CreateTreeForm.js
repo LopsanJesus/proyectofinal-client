@@ -1,17 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Alert, Button, Col, Container, Form, Spinner } from 'react-bootstrap';
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useTranslation } from 'react-i18next';
 import './CreateTreeForm.scss';
 
-import { CREATE_TREE } from "../../queries/forest";
-
-const languages = [
-  { id: 1, name: "Español" },
-  { id: 2, name: "Inglés" },
-  { id: 3, name: "Francés" },
-]
+import { CREATE_TREE, GET_ALL_LANGUAGES } from "../../queries/forest";
 
 const CreateTreeForm = () => {
   const { t, i18n } = useTranslation();
@@ -23,14 +17,19 @@ const CreateTreeForm = () => {
   const [validated, setValidated] = useState(false);
   const [formError, setFormError] = useState("");
 
+  const { loading: loadingLanguages, error, data } = useQuery(GET_ALL_LANGUAGES);
+
   const [importTreeMutation, { loading }] = useMutation(CREATE_TREE, {
     onError(error) {
       setFormError(error.message);
     },
-    onCompleted(result) {
+    onCompleted() {
       history.push("/my-forest");
     },
   });
+
+  if (loadingLanguages) return <div>Loading languages...</div>;
+  if (error) return <div>Error obtaining languages</div>;
 
   const HandleSubmit = async (event) => {
     setFormError("");
@@ -79,58 +78,61 @@ const CreateTreeForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="formBasicSourceLang">
-          <Form.Label>Idioma origen</Form.Label>
-          <Form.Control
-            as="select"
-            name="sourceLang"
-            placeholder="Lengua origen"
-            defaultValue={i18n.language}
-            ref={sourceLangRef}
-            required
-          >
-            {languages.map((language) => {
-              return <option value={language.id}>{language.name}</option>
-            })}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Por favor introduzca un email válido.
-        </Form.Control.Feedback>
-        </Form.Group>
+        {data &&
+          <>
+            <Form.Group controlId="formBasicSourceLang">
+              <Form.Label>Idioma origen</Form.Label>
+              <Form.Control
+                as="select"
+                name="sourceLang"
+                placeholder="Lengua origen"
+                defaultValue={i18n.language}
+                ref={sourceLangRef}
+                required
+              >
+                {data.getAllLanguages.map((language) => {
+                  return <option value={language.id}>{t('languages.codes.' + language.code)}</option>
+                })}
+              </Form.Control>
+              <Form.Control.Feedback type="invalid">
+                Por favor introduzca un email válido.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-        <Form.Group controlId="formBasicTargetLang">
-          <Form.Label>Idioma a practicar</Form.Label>
-          <Form.Control
-            as="select"
-            name="targetLang"
-            placeholder="Lengua destino"
-            defaultValue={i18n.language}
-            ref={targetLangRef}
-            required
-          >
-            {languages.map((language) => {
-              return <option value={language.id}>{language.name}</option>
-            })}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Por favor introduzca un email válido.
-        </Form.Control.Feedback>
-        </Form.Group>
+            <Form.Group controlId="formBasicTargetLang">
+              <Form.Label>Idioma a practicar</Form.Label>
+              <Form.Control
+                as="select"
+                name="targetLang"
+                placeholder="Lengua destino"
+                defaultValue={i18n.language}
+                ref={targetLangRef}
+                required
+              >
+                {data && data.getAllLanguages.map((language) => {
+                  return <option value={language.id}>{t('languages.codes.' + language.code)}</option>
+                })}
+              </Form.Control>
+              <Form.Control.Feedback type="invalid">
+                Por favor introduzca un email válido.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          {loading ? (
-            <Spinner
-              as="span"
-              animation="border"
-              size="sm"
-              role="status"
-              aria-hidden="true"
-            />
-          ) : (
-              <div>Crear</div>
-            )}
-        </Button>
-
+            <Button variant="primary" type="submit">
+              {loading ? (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              ) : (
+                  <div>Crear</div>
+                )}
+            </Button>
+          </>
+        }
       </Form>
     </Container>
   );

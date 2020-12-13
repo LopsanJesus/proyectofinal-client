@@ -1,5 +1,6 @@
 {
     "my_forest": "Mi Bosque",
+    "my_history": "Mi Historial",
     "profile": "Perfil",
     "logout": "Cerrar sesión",
     "registerTitle": "Nuevo Usuario",
@@ -24,7 +25,7 @@
     },
     "treeList": {
         "createdBy": "Creado por",
-        "addTree": "Añadir árbol"
+        "addTree": "Crear árbol"
     },
     "discover": {
         "link": "Descubre",

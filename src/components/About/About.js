@@ -31,14 +31,6 @@ const About = () => {
               </Button>
             </a>
           </p>
-          {/* <p>{t('about.links')}</p>
-          <p>
-            <a href="https://treelang-api.herokuapp.com/">
-              <Button variant="outline-dark">
-                {t('about.playground')}
-              </Button>
-            </a>
-          </p> */}
         </Card.Text>
       </Card.Body>
     </Card>

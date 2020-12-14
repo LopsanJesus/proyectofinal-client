@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
-
 import "./BranchCard.scss";
-// import { ProgressBar } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const BranchCard = ({ user, branch, isImported }) => {
+  const { t } = useTranslation();
   let numberOfApples = 0;
 
   user && branch.leaves.map((leaf) => {
@@ -23,9 +23,8 @@ const BranchCard = ({ user, branch, isImported }) => {
           <Card.Title>{branch.name}</Card.Title>
           <Card.Text>
             {isImported ?
-              // <ProgressBar now={numberOfApples} max={branch.leaves.length} label={`${numberOfApples}/${branch.leaves.length}`} />
-              <span>{numberOfApples} apples / {branch.leaves.length} leaves</span>
-              : <span>{branch.leaves.length} leaves</span>
+              <span>{numberOfApples + " " + t('branch.apples') + " / " + branch.leaves.length + " " + t('branch.leaves')}</span>
+              : <span>{branch.leaves.length + " " + t('branch.leaves')}</span>
             }
           </Card.Text>
         </Card.Body>

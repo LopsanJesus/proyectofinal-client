@@ -28,10 +28,10 @@ const TopBar = ({
           </Nav.Item>
           {user && <>
             <Nav.Item className="mr-auto">
-              <Link to="/my-forest">{t('my_forest')}</Link>
+              <Link to="/my-forest">{t('myForest')}</Link>
             </Nav.Item>
             <Nav.Item className="mr-auto">
-              <Link to="/my-history">{t('my_history')}</Link>
+              <Link to="/my-history">{t('myHistory')}</Link>
             </Nav.Item>
           </>}
         </Nav>

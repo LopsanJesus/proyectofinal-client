@@ -1,6 +1,6 @@
 {
-    "my_forest": "Mi Bosque",
-    "my_history": "Mi Historial",
+    "myForest": "Mi Bosque",
+    "myHistory": "Mi Historial",
     "profile": "Perfil",
     "logout": "Cerrar sesión",
     "registerTitle": "Nuevo Usuario",
@@ -25,12 +25,44 @@
     },
     "treeList": {
         "createdBy": "Creado por",
-        "addTree": "Crear árbol"
+        "addTree": "Crear árbol",
+		"noTrees": "No hay árboles que mostrar",
+		"importSuggestion": "O bien, importa un árbol de otro usuario:",
+		"goToDiscover": "Ir a Descubre",
+		"needToAccess": "Necesitas acceder a tu cuenta para practicar",
+		"addToForestSuggestion": "¡Añádelo a Mi Bosque haciendo click en la estrella!",
+		"noLeavesNoPractice": "Este árbol no tiene hojas, por lo que no podrás practicar"
     },
     "discover": {
         "link": "Descubre",
         "title": "Árboles plantados en Treelang"
     },
+	"history": {
+		"score": "Aciertos",
+		"total": "Total",
+		"daysAgo": "Hace {{days}} días",
+		"hoursAgo": "Hace {{hours}} horas",
+		"minutesAgo": "Hace {{minutes}} minutos",
+		"rightNow": "Justo ahora"
+	},
+	"branch": {
+		"noBranches": "No hay ramas que mostrar",
+		"noLeaves": "No se han encontrado hojas en esta rama",
+		"apples": "manzanas",
+		"leaves": "hojas",
+		"createNewBranch": "Crear nueva rama",
+		"newBranchName": "Nombre nueva rama",
+		"noEmptyFields": "No puede haber campos vacíos",
+		"createBranchConfirm": "¿Está seguro? Esta acción no se puede deshacer",
+		"branchNamePlaceholder": "Introduzca el nombre de la rama",
+		"validNameFeedback": "Por favor introduzca un nombre válido",
+		"addLine": "Añadir Línea",
+		"createBranch": "Crear Rama"
+	},
+	"leaf": {
+		"word": "Palabra",
+		"translation": "Traducción"
+	},
     "form": {
         "name": "Nombre",
         "namePlaceholder": "Introduzca su nombre",
@@ -40,7 +72,8 @@
         "confirmPassword": "Confirmar contraseña",
         "numberOfApples": "Nº de manzanas",
         "login": "Acceder",
-        "register": "Registrarse"
+        "register": "Registrarse",
+		"passwordMatchFeedback": "Las contraseñas no coinciden"
     },
     "language": "Idioma",
     "languages": {

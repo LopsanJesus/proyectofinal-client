@@ -1,6 +1,6 @@
 {
-    "my_forest": "My Forest",
-    "my_history": "My History",
+    "myForest": "My Forest",
+    "myHistory": "My History",
     "profile": "Profile",
     "logout": "Log Out",
     "registerTitle": "New User",
@@ -25,12 +25,44 @@
     },
     "treeList": {
         "createdBy": "Created by",
-        "addTree": "Add Tree"
+        "addTree": "Add Tree",
+		"noTrees": "No trees to show",
+		"importSuggestion": "Or you can import another user's tree:",
+		"goToDiscover": "Go to Discover",
+		"needToAccess": "You need to access to your account for practising",
+		"addToForestSuggestion": "¡Add this to My Forest by clicking on the star!",
+		"noLeavesNoPractice": "This tree has no leaves, so you won't be able to practice"
     },
     "discover": {
         "link": "Discover",
         "title": "Planted trees in Treelang"
     },
+	"history": {
+		"score": "Score",
+		"total": "Total",
+		"daysAgo": "{{days}} days ago",
+		"hoursAgo": "{{hours}} hours ago",
+		"minutesAgo": "{{minutes}} minutes ago",
+		"rightNow": "Right now"
+	},
+	"branch": {
+		"noBranches": "No branches to show",
+		"noLeaves": "No leaves were found in this branch",
+		"apples": "apples",
+		"leaves": "leaves",
+		"createNewBranch": "Create new branch",
+		"newBranchName": "New branch name",
+		"noEmptyFields": "There cannot be empty fields",
+		"createBranchConfirm": "Are you sure? This action cannot be undone",
+		"branchNamePlaceholder": "Write the name of the branch",
+		"validNameFeedback": "Please write a valid name",
+		"addLine": "Add Line",
+		"createBranch": "Create Branch"
+	},
+	"leaf": {
+		"word": "Word",
+		"translation": "Translation"
+	},
     "form": {
         "name": "Name",
         "namePlaceholder": "Write your name please",
@@ -40,7 +72,8 @@
         "confirmPassword": "Confirm password",
         "numberOfApples": "Number of Apples",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+		"passwordMatchFeedback": "Passwords doesn't match"
     },
     "language": "Language",
     "languages": {

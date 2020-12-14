@@ -91,7 +91,7 @@ const CreateTreeForm = () => {
                 required
               >
                 {data.getAllLanguages.map((language) => {
-                  return <option value={language.id}>{t('languages.codes.' + language.code)}</option>
+                  return <option key={language.id} value={language.id}>{t('languages.codes.' + language.code)}</option>
                 })}
               </Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -110,7 +110,7 @@ const CreateTreeForm = () => {
                 required
               >
                 {data && data.getAllLanguages.map((language) => {
-                  return <option value={language.id}>{t('languages.codes.' + language.code)}</option>
+                  return <option key={language.id} value={language.id}>{t('languages.codes.' + language.code)}</option>
                 })}
               </Form.Control>
               <Form.Control.Feedback type="invalid">

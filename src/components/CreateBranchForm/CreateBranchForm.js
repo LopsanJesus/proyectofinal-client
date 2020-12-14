@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { connect } from "react-redux";
 import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import EmptyLine from '../EmptyLine';
-// import appConfig from "../../config/app";
 
 import { useMutation } from "@apollo/client";
 import { CREATE_BRANCH } from "../../queries/forest";
@@ -12,13 +11,13 @@ import { CREATE_BRANCH } from "../../queries/forest";
 import './CreateBranchForm.scss';
 
 const CreateBranchForm = ({ user }) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   let history = useHistory();
 
   const nameRef = useRef(null);
   const leavesList = useRef(null);
-  const [validated/*, setValidated*/] = useState(false);
+  const [validated] = useState(false);
   const [formError, setFormError] = useState("");
   const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
 
@@ -43,11 +42,11 @@ const CreateBranchForm = ({ user }) => {
       }
       return false
     }).length > 0) {
-      setFormError("No puede haber campos vacíos.");
+      setFormError(t('branch.noEmptyFields'));
       return false;
     }
 
-    const confirmation = window.confirm("¿Está seguro? Esta acción no se puede deshacer.");
+    const confirmation = window.confirm(t('branch.createBranchConfirm'));
     if (!confirmation)
       return confirmation
     else {
@@ -90,25 +89,25 @@ const CreateBranchForm = ({ user }) => {
         {formError && <Alert variant="danger">{formError}</Alert>}
 
         <Form.Group as={Row} controlId="formBasicName">
-          <Form.Label>Nombre Nueva Rama</Form.Label>
+          <Form.Label>{t('branch.newBranchName')}</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Introduzca el nombre"
+            placeholder={t('branch.branchNamePlaceholder')}
             ref={nameRef}
             required
           />
           <Form.Control.Feedback type="invalid">
-            Por favor introduzca un nombre válido.
-        </Form.Control.Feedback>
+            {t('branch.validNameFeedback')}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Row}>
           <Col>
-            <Button variant="primary" onClick={() => addNewLine()}>Añadir línea</Button>
+            <Button variant="primary" onClick={() => addNewLine()}>{t('branch.addLine')}</Button>
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formBasicName">
-          <Form.Label as={Col}>Palabra</Form.Label>
-          <Form.Label as={Col}>Traducción</Form.Label>
+          <Form.Label as={Col}>{t('leaf.word')}</Form.Label>
+          <Form.Label as={Col}>{t('leaf.translation')}</Form.Label>
         </Form.Group>
 
         <Form.Group ref={leavesList}>
@@ -130,7 +129,7 @@ const CreateBranchForm = ({ user }) => {
                 aria-hidden="true"
               />
             ) : (
-                <div>Crear Rama</div>
+                <div>{t('branch.createBranch')}</div>
               )}
           </Button>
         </Form.Group>

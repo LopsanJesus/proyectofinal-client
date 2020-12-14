@@ -11,8 +11,10 @@ import { useQuery } from "@apollo/client";
 
 import "./Tree.scss";
 import { Button, Image, Alert } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const Tree = ({ user }) => {
+  const { t } = useTranslation();
   const params = useParams();
   const [checked, setChecked] = useState("");
 
@@ -21,12 +23,11 @@ const Tree = ({ user }) => {
     variables: { id: parseInt(params.id) }
   });
 
-  const [importTreeMutation/*, { loadingimportTreeMutation }*/] = useMutation(IMPORT_TREE, {
+  const [importTreeMutation] = useMutation(IMPORT_TREE, {
     onError(error) {
       alert("Error al importar" + error);
     },
     onCompleted() {
-      // console.log("Importado correctamente");
     },
   });
 
@@ -51,12 +52,12 @@ const Tree = ({ user }) => {
     <Container fluid className="Tree">
       {!user &&
         <Alert variant="warning">
-          Necesitas acceder a tu cuenta para practicar
+          {t('treeList.needToAccess')}
         </Alert>
       }
       {user && !checked &&
         <Alert variant="primary">
-          ¡Añádelo a Mi Bosque haciendo click en la estrella!
+          {t('treeList.addToForestSuggestion')}
         </Alert>
       }
       {!data.getTree.branches.find((branch) => {
@@ -65,7 +66,7 @@ const Tree = ({ user }) => {
         })
       }) &&
         <Alert variant="warning">
-          Este árbol no tiene hojas, por lo que no podrás practicar
+          {t('treeList.noLeavesNoPractice')}
         </Alert>
       }
       <h3 className="tree-header">

@@ -12,8 +12,11 @@ import { saveUserForest } from "../../actions/forest";
 
 import "./MyForest.scss";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MyForest = ({ user, trees, saveUserForest }) => {
+  const { t } = useTranslation();
+
   const { loading, error, data } = useQuery(GET_MY_FOREST, {
     fetchPolicy: "network-only"
   });
@@ -25,13 +28,13 @@ const MyForest = ({ user, trees, saveUserForest }) => {
 
   return (
     <Container fluid className="MyForest">
-      <h2 className="header-title">Mi Bosque</h2>
+      <h2 className="header-title">{t('myForest')}</h2>
       <TreeList user={user} trees={trees} view="myForest" />
       <CreateTreeButton />
-      <p className="secondary-option">O bien, importa un árbol de otro usuario:</p>
+      <p className="secondary-option">{t('treeList.importSuggestion')}</p>
       <Link to="/discover">
         <Button variant="primary">
-          Ir a Descubre
+          {t('treeList.goToDiscover')}
         </Button>
       </Link>
     </Container>

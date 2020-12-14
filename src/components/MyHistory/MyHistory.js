@@ -1,7 +1,7 @@
 import React from 'react';
 import './MyHistory.scss';
 import { GET_MY_HISTORY } from "../../queries/practice";
-import { Badge, Container, ListGroup } from 'react-bootstrap';
+import { Badge, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
@@ -22,35 +22,46 @@ const MyHistory = () => {
 
   const getTimeSinceTest = (minutes) => {
     if (minutes / 60 > 23)
-      return <span>Hace {Math.floor(minutes / (60 * 24))} días</span>
+      return <span>{t('history.daysAgo', { days: Math.floor(minutes / (60 * 24)) })}</span>
     if (minutes > 59)
-      return <span>Hace {Math.floor(minutes / 60)} horas</span>
+      return <span>{t('history.hoursAgo', { hours: Math.floor(minutes / 60) })}</span>
     if (minutes > 0)
-      return <span>Hace {Math.floor(minutes)} minutos</span>
-    return <span>Justo ahora</span>
+      return <span>{t('history.minutesAgo', { minutes: Math.floor(minutes) })}</span>
+    return <span>{t('history.rightNow')}</span>
   }
 
   if (loading) return <div>Obteniendo resultados...</div>
   if (error) return <div>ERROR. No podemos obtener los resultados.</div>
 
+
+  var testsHistory = data.getMyHistory;
+
+  testsHistory = testsHistory.slice().sort((a, b) => {
+    if (a.createdAt < b.createdAt) {
+      return 1;
+    }
+    if (a.createdAt > b.createdAt) {
+      return -1;
+    }
+    return 0;
+  });
+
   return (
-    <Container fluid className="MyHistory">
-      <h2 className="header-title">{t('my_history')}</h2>
-      <ListGroup>
-        {
-          data.getMyHistory.map((test) => {
-            var time = new Date(Date.now() - new Date(test.createdAt));
-            return (
-              <ListGroup.Item>
-                Árbol: <strong>{test.importedTree.treeId.name} </strong>&nbsp;
-                Score: <Badge pill variant={getScoreColor(test.score)}>{test.score}</Badge>&nbsp;
-                Total: {test.numberOfLeaves}&nbsp;
-                ({getTimeSinceTest(time / 60000)})
-              </ListGroup.Item>
-            );
-          })
-        }
-      </ListGroup>
+    <Container fluid className="MyHistory" as={Col} lg={{ span: 8, offset: 2 }}>
+      <h2 className="header-title">{t('myHistory')}</h2>
+      {
+        testsHistory.map((test) => {
+          var time = new Date(Date.now() - new Date(test.createdAt));
+          return (
+            <Row className="testHistoryElement">
+              <Col><strong>{test.importedTree.treeId.name} </strong></Col>
+              <Col>{t('history.score')}: <Badge pill variant={getScoreColor(test.score)}>{test.score}</Badge>&nbsp;</Col>
+              <Col>{t('history.total')}: {test.numberOfLeaves}</Col>
+              <Col>{getTimeSinceTest(Math.floor(time / 60000))}</Col>
+            </Row>
+          );
+        })
+      }
     </Container>
   );
 };

@@ -42,7 +42,7 @@ const RegisterForm = () => {
     setValidated(true);
 
     if (confirmPasswordRef.current.value !== passwordRef.current.value) {
-      setFormError("Las contraseñas no coinciden");
+      setFormError(t('form.passwordMatchFeedback'));
       return false;
     }
 
@@ -77,7 +77,6 @@ const RegisterForm = () => {
           />
           <Form.Control.Feedback type="invalid">
             {t('form.nameFeedback')}
-            {/* Por favor introduzca un email válido. */}
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -119,7 +118,7 @@ const RegisterForm = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Contraseña diferente.
+            {t('form.passwordMatchFeedback')}
           </Form.Control.Feedback>
         </Form.Group>
 

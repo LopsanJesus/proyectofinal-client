@@ -5,8 +5,10 @@ import { GET_BRANCH } from "../../queries/forest";
 import { useQuery } from "@apollo/client";
 import "./Branch.scss";
 import { Alert, Col, Container, Image, ListGroup, Row, Spinner } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const Branch = ({ user }) => {
+  const { t } = useTranslation();
   const params = useParams();
 
   const { loading, error, data } = useQuery(GET_BRANCH, {
@@ -25,7 +27,7 @@ const Branch = ({ user }) => {
       <Container>
         {
           data.getBranch.leaves <= 0 ?
-            <Alert variant="info">No se han encontrado hojas en esta rama.</Alert>
+            <Alert variant="info">{t('branch.noLeaves')}</Alert>
             :
             <Row>
               <Col>

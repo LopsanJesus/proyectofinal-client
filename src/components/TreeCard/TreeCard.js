@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import ReactCountryFlag from "react-country-flag";
-
 import { Card, Image } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
@@ -28,15 +26,6 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
                 title="Already known"
                 roundedCircle
               />
-              {/* <ReactCountryFlag
-                className="language-flag source-language-flag"
-                countryCode={tree.treeId.sourceLang.code}
-                svg
-                style={{
-                  width: "2em",
-                  height: "2em",
-                }}
-              /> */}
               <span className="arrow">&#8680;</span>
               <Image
                 src={tree.treeId.targetLang.code + ".png"}
@@ -44,15 +33,6 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
                 title="Learning"
                 roundedCircle
               />
-              {/* <ReactCountryFlag
-                className="language-flag target-language-flag"
-                countryCode={tree.treeId.targetLang.code}
-                svg
-                style={{
-                  width: "4em",
-                  height: "4em",
-                }}
-              /> */}
             </div>
           </div>
         </Card.Body>

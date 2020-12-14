@@ -74,7 +74,7 @@ const Practice = ({ user }) => {
     recordTestMutation({
       variables: {
         score: scoreCount,
-        numberOfLeaves: appConfig.testNumberOfQuestions,
+        numberOfLeaves: correctAnswers.length,
         names: correctAnswers.map(({ name }) => name),
         hits: correctAnswers.map(({ correct }) => {
           if (correct)

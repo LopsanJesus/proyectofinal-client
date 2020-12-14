@@ -26,57 +26,56 @@
     "treeList": {
         "createdBy": "Created by",
         "addTree": "Add Tree",
-		"noTrees": "No trees to show",
-		"importSuggestion": "Or you can import another user's tree:",
-		"goToDiscover": "Go to Discover",
-		"needToAccess": "You need to access to your account for practising",
-		"addToForestSuggestion": "¡Add this to My Forest by clicking on the star!",
-		"noLeavesNoPractice": "This tree has no leaves, so you won't be able to practice"
+        "noTrees": "No trees to show",
+        "importSuggestion": "Or you can import another user's tree:",
+        "goToDiscover": "Go to Discover",
+        "needToAccess": "You need to access to your account for practising",
+        "addToForestSuggestion": "¡Add this to My Forest by clicking on the star!",
+        "noLeavesNoPractice": "This tree has no leaves, so you won't be able to practice"
     },
     "discover": {
         "link": "Discover",
         "title": "Planted trees in Treelang"
     },
-	"history": {
-		"score": "Score",
-		"total": "Total",
-		"daysAgo": "{{days}} days ago",
-		"hoursAgo": "{{hours}} hours ago",
-		"minutesAgo": "{{minutes}} minutes ago",
-		"rightNow": "Right now",
-		"noTests": "You need to practice in order to observe history"
-	},
-	"branch": {
-		"noBranches": "No branches to show",
-		"noLeaves": "No leaves were found in this branch",
-		"testTreeButton": "Test tree",
-		"apples": "apples",
-		"leaves": "leaves",
-		"createNewBranch": "Create new branch",
-		"newBranchName": "New branch name",
-		"noEmptyFields": "There cannot be empty fields",
-		"createBranchConfirm": "Are you sure? This action cannot be undone",
-		"branchNamePlaceholder": "Write the name of the branch",
-		"validNameFeedback": "Please write a valid name",
-		"addLine": "Add Line",
-		"createBranch": "Create Branch"
-	},
-	"leaf": {
-		"word": "Word",
-		"translation": "Translation"
-	},
-	"practice": {
-		"loadingQuestions": "Loading questions...",
-		"previewTitle": "Test of",
-		"getReady": "Get ready to answer 10 questions",
-		"goodLuck": "Good Luck!",
-		"startTestButton": "Start Test!",
-		"finishTestButton": "Finish Test",
-		"score": "Score",
-		"yourTry": "Tu intento",
-		"goBackButton": "Go back"
-		
-	},
+    "history": {
+        "score": "Score",
+        "total": "Total",
+        "daysAgo": "{{days}} days ago",
+        "hoursAgo": "{{hours}} hours ago",
+        "minutesAgo": "{{minutes}} minutes ago",
+        "rightNow": "Right now",
+        "noTests": "You need to practice in order to observe history"
+    },
+    "branch": {
+        "noBranches": "No branches to show",
+        "noLeaves": "No leaves were found in this branch",
+        "testTreeButton": "Test tree",
+        "apples": "apples",
+        "leaves": "leaves",
+        "createNewBranch": "Create new branch",
+        "newBranchName": "New branch name",
+        "noEmptyFields": "There cannot be empty fields",
+        "createBranchConfirm": "Are you sure? This action cannot be undone",
+        "branchNamePlaceholder": "Write the name of the branch",
+        "validNameFeedback": "Please write a valid name",
+        "addLine": "Add Line",
+        "createBranch": "Create Branch"
+    },
+    "leaf": {
+        "word": "Word",
+        "translation": "Translation"
+    },
+    "practice": {
+        "loadingQuestions": "Loading questions...",
+        "previewTitle": "Test of",
+        "getReady": "Get ready to answer a maximum of 10 questions",
+        "goodLuck": "Good Luck!",
+        "startTestButton": "Start Test!",
+        "finishTestButton": "Finish Test",
+        "score": "Score",
+        "yourTry": "Tu intento",
+        "goBackButton": "Go back"
+    },
     "form": {
         "name": "Name",
         "namePlaceholder": "Write your name please",
@@ -87,7 +86,7 @@
         "numberOfApples": "Number of Apples",
         "login": "Login",
         "register": "Register",
-		"passwordMatchFeedback": "Passwords doesn't match"
+        "passwordMatchFeedback": "Passwords doesn't match"
     },
     "language": "Language",
     "languages": {

@@ -19,7 +19,7 @@ const CreateBranchForm = ({ user }) => {
   const leavesList = useRef(null);
   const [validated] = useState(false);
   const [formError, setFormError] = useState("");
-  const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
+  const [fields, setFields] = useState([{ word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }, { word: "", translation: "" }]);
 
   const [createBranchMutation, { loading }] = useMutation(CREATE_BRANCH, {
     onError(error) {

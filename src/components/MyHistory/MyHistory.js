@@ -1,7 +1,7 @@
 import React from 'react';
 import './MyHistory.scss';
 import { GET_MY_HISTORY } from "../../queries/practice";
-import { Badge, Col, Container, Row } from 'react-bootstrap';
+import { Alert, Badge, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
@@ -49,7 +49,7 @@ const MyHistory = () => {
   return (
     <Container fluid className="MyHistory" as={Col} lg={{ span: 8, offset: 2 }}>
       <h2 className="header-title">{t('myHistory')}</h2>
-      {
+      {testsHistory.length > 0 ?
         testsHistory.map((test) => {
           var time = new Date(Date.now() - new Date(test.createdAt));
           return (
@@ -61,6 +61,8 @@ const MyHistory = () => {
             </Row>
           );
         })
+        :
+        <Alert variant="info">{t('history.noTests')}</Alert>
       }
     </Container>
   );

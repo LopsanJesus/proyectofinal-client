@@ -103,7 +103,7 @@ const Tree = ({ user }) => {
                   null
                   : "disabled"
               }
-            >Practicar</Button>
+            >{t('branch.testTreeButton')}</Button>
           </Link>
         }
       </h3>

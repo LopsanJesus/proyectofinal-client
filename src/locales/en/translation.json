@@ -43,11 +43,13 @@
 		"daysAgo": "{{days}} days ago",
 		"hoursAgo": "{{hours}} hours ago",
 		"minutesAgo": "{{minutes}} minutes ago",
-		"rightNow": "Right now"
+		"rightNow": "Right now",
+		"noTests": "You need to practice in order to observe history"
 	},
 	"branch": {
 		"noBranches": "No branches to show",
 		"noLeaves": "No leaves were found in this branch",
+		"practiceButton": "Test tree",
 		"apples": "apples",
 		"leaves": "leaves",
 		"createNewBranch": "Create new branch",
@@ -62,6 +64,18 @@
 	"leaf": {
 		"word": "Word",
 		"translation": "Translation"
+	},
+	"practice": {
+		"loadingQuestions": "Loading questions...",
+		"previewTitle": "Test of",
+		"getReady": "Get ready to answer 10 questions",
+		"goodLuck": "Good Luck!",
+		"startTestButton": "Start Test!",
+		"finishTestButton": "Finish Test",
+		"score": "Score",
+		"yourTry": "Tu intento",
+		"goBackButton": "Go back"
+		
 	},
     "form": {
         "name": "Name",

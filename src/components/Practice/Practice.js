@@ -6,8 +6,10 @@ import { GET_QUESTIONS, RECORD_TEST } from "../../queries/practice";
 import { useMutation, useQuery } from "@apollo/client";
 import { Link, useParams } from 'react-router-dom';
 import appConfig from '../../config/app';
+import { useTranslation } from 'react-i18next';
 
 const Practice = ({ user }) => {
+  const { t } = useTranslation();
   const params = useParams();
   const [view, setView] = useState("preview");
   const [score, setScore] = useState(0);
@@ -29,7 +31,7 @@ const Practice = ({ user }) => {
     onCompleted() { },
   });
 
-  if (loading) return <div>Loading questions...</div>;
+  if (loading) return <div>{t('practice.loadingQuestions')}</div>;
   if (error) return <div>Error!</div>;
 
   const importedTree = data.getTree.importedBy.find((importedTree) =>
@@ -98,20 +100,22 @@ const Practice = ({ user }) => {
 
   leaves = leaves.sort(() => Math.random() - 0.5).slice(0, appConfig.testNumberOfQuestions);
 
+  window.scrollTo(0, 0);
+
   return (
     <>
       {view === "preview" &&
         <>
-          <h2 className="header-title">Práctica de {data.getTree.name}</h2>
-          <p>Prepárate para contestar las 10 preguntas correctamente</p>
-          <p>¡Suerte!</p>
-          <Button className="next-button" onClick={() => { setView("practiceForm") }}>Start Test!</Button>
+          <h2 className="header-title">{t('practice.previewTitle') + " " + data.getTree.name}</h2>
+          <p>{t('practice.getReady')}</p>
+          <p>{t('practice.goodLuck')}</p>
+          <Button className="next-button" onClick={() => { setView("practiceForm") }}>{t('practice.startTestButton')}</Button>
         </>
       }
       {view === "practiceForm" &&
         <>
           <div>
-            <h3 className="tree-header">Practice</h3>
+            <h3 className="tree-header">{data.getTree.name}</h3>
             <Container className="Practice">
               <ListGroup ref={translationsRef}>
                 {
@@ -132,7 +136,7 @@ const Practice = ({ user }) => {
 
               <Row>
                 <Col></Col>
-                <Col><Button className="next-button" onClick={handleFinish}>Finish Test</Button></Col>
+                <Col><Button className="next-button" onClick={handleFinish}>{t("practice.finishTestButton")}</Button></Col>
                 <Col></Col>
               </Row>
             </Container>
@@ -142,7 +146,7 @@ const Practice = ({ user }) => {
       {
         view === "score" &&
         <div className="practice-score">
-          <h1 className="score-title">Score: {score}</h1>
+          <h1 className="score-title">{t('practice.score')}: {score}</h1>
           {
             answers.length > 0 ?
               answers.map((answer) => {
@@ -150,8 +154,10 @@ const Practice = ({ user }) => {
                   <Alert
                     variant={answer.correct ? "success" : "danger"}
                   >
-                    {answer.name}: <strong>{answer.translation}</strong>
-                    <span className="try">Your try: {answer.answer}</span>
+                    <Row>
+                      <Col>{answer.name}: <strong>{answer.translation}</strong></Col>
+                      <Col><span className="try">{t('practice.yourTry')}: {answer.answer}</span></Col>
+                    </Row>
                   </Alert>
                 )
               })
@@ -159,7 +165,7 @@ const Practice = ({ user }) => {
               <div>No hay respuestas</div>
           }
           <Link to={"/tree/" + params.id}>
-            <Button variant="primary">Volver</Button>
+            <Button variant="primary">{t('practice.goBackButton')}</Button>
           </Link>
         </div>
       }

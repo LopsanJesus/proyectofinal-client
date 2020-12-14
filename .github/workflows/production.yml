@@ -21,6 +21,14 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:3000
+          browser: chrome
+
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         env:

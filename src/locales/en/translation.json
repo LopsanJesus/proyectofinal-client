@@ -49,7 +49,7 @@
 	"branch": {
 		"noBranches": "No branches to show",
 		"noLeaves": "No leaves were found in this branch",
-		"practiceButton": "Test tree",
+		"testTreeButton": "Test tree",
 		"apples": "apples",
 		"leaves": "leaves",
 		"createNewBranch": "Create new branch",

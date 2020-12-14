@@ -23,7 +23,7 @@ const Home = () => {
           <p>{t('home.learning')}</p>
           <p>{t('home.fun')}</p>
           <p>{t('home.muchmore')}</p>
-          <Link to="/login">
+          <Link to="/discover">
             <Button variant="primary">
               {t('home.letsStart')}
             </Button>

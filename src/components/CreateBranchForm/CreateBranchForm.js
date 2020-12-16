@@ -35,13 +35,14 @@ const CreateBranchForm = ({ user }) => {
     event.stopPropagation();
     setFormError("");
 
-    if (fields.filter((_, index) => {
+    if (nameRef.current.value.trim() === "" || fields.filter((_, index) => {
       if (leavesList.current.childNodes[index].childNodes[0].childNodes[0].value === "" ||
         leavesList.current.childNodes[index].childNodes[1].childNodes[0].value === "") {
         return true
       }
       return false
     }).length > 0) {
+      window.scrollTo(0, 0);
       setFormError(t('branch.noEmptyFields'));
       return false;
     }

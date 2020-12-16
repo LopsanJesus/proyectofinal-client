@@ -6,6 +6,7 @@
     "registerTitle": "Nuevo Usuario",
     "home": {
         "welcome": "¡Bienvenido a Treelang!",
+        "wateringTrees": "Espere un momento, estamos regando nuestros árboles...",
         "inTreelangTitle": "En Treelang podrá encontrar:",
         "learning": "Aprendizaje",
         "fun": "Diversión",

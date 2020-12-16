@@ -36,8 +36,8 @@ const CreateBranchForm = ({ user }) => {
     setFormError("");
 
     if (nameRef.current.value.trim() === "" || fields.filter((_, index) => {
-      if (leavesList.current.childNodes[index].childNodes[0].childNodes[0].value === "" ||
-        leavesList.current.childNodes[index].childNodes[1].childNodes[0].value === "") {
+      if (leavesList.current.childNodes[index].childNodes[0].childNodes[0].value.trim() === "" ||
+        leavesList.current.childNodes[index].childNodes[1].childNodes[0].value.trim() === "") {
         return true
       }
       return false
@@ -54,7 +54,7 @@ const CreateBranchForm = ({ user }) => {
       createBranchMutation({
         variables: {
           tree: parseInt(params.treeId),
-          name: nameRef.current.value,
+          name: nameRef.current.value.trim(),
           names: getLeaves(),
           translations: getLeavesTranslation()
         },
@@ -65,7 +65,7 @@ const CreateBranchForm = ({ user }) => {
   const getLeaves = () => {
     let array = [];
     fields.map((_, index) => {
-      return array.push(leavesList.current.childNodes[index].childNodes[0].childNodes[0].value);
+      return array.push(leavesList.current.childNodes[index].childNodes[0].childNodes[0].value.trim());
     });
     return array;
   }
@@ -73,7 +73,7 @@ const CreateBranchForm = ({ user }) => {
   const getLeavesTranslation = () => {
     let array = [];
     fields.map((_, index) => {
-      return array.push(leavesList.current.childNodes[index].childNodes[1].childNodes[0].value);
+      return array.push(leavesList.current.childNodes[index].childNodes[1].childNodes[0].value.trim());
     })
     return array;
   }

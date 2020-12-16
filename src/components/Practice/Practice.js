@@ -43,7 +43,7 @@ const Practice = ({ user }) => {
     var correctAnswers = [];
 
     Array.from(translationsRef.current.childNodes).map((leaf) => {
-      return answersTemp = [...answersTemp, { name: leaf.childNodes[0].innerText, translation: leaf.childNodes[1].childNodes[0].value }];
+      return answersTemp = [...answersTemp, { name: leaf.childNodes[0].innerText, translation: leaf.childNodes[1].childNodes[0].value.trim() }];
     })
 
     var scoreCount = 0;

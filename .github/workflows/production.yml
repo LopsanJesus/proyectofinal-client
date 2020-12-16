@@ -1,39 +1,39 @@
-name: Production workflow
+# name: Production workflow
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v1
 
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      
-      - run: npm install
-      - run: npm run build --if-present
+#       - name: Use Node.js 12.x
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 12.x
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v1
-        with:
-          build: npm run build
-          start: npm start
-          wait-on: http://localhost:3000
-          browser: chrome
+#       - run: npm install
+#       - run: npm run build --if-present
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=build --prod
-          secrets: '["NETLIFY_AUTH_TOKEN","NETLIFY_SITE_ID"]'
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v1
+#         with:
+#           build: npm run build
+#           start: npm start
+#           wait-on: http://localhost:3000
+#           browser: chrome
+
+#       - name: Deploy to Netlify
+#         uses: netlify/actions/cli@master
+#         env:
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+#         with:
+#           args: deploy --dir=build --prod
+#           secrets: '["NETLIFY_AUTH_TOKEN","NETLIFY_SITE_ID"]'

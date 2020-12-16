@@ -55,7 +55,7 @@ const Practice = ({ user }) => {
       answersTemp.map((answer) => {
         if (answer.name === leaf.name) {
           attempt = answer.translation;
-          if (answer.translation.toLowerCase() === leaf.translation.toLowerCase()) {
+          if (answer.translation.toLowerCase().trim() === leaf.translation.toLowerCase().trim()) {
             hit = true;
             scoreCount++;
           }
@@ -64,8 +64,8 @@ const Practice = ({ user }) => {
       });
 
       return correctAnswers = [...correctAnswers, {
-        name: leaf.name,
-        translation: leaf.translation,
+        name: leaf.name.trim(),
+        translation: leaf.translation.trim(),
         correct: hit,
         answer: attempt
       }];

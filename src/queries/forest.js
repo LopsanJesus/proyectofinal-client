@@ -76,11 +76,9 @@ query getTreeQuery($id: Int!){
     }
     sourceLang {
       code
-      name
     }
     targetLang {
       code
-      name
     }
     branches {
       id

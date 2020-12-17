@@ -11,8 +11,8 @@ context("Create Tree", () => {
         const fakeName = "Test " + faker.lorem.word(10);
 
         cy.get("#formBasicName").type(fakeName);
-        cy.get("#formBasicSourceLang").select("Inglés");
-        cy.get("#formBasicTargetLang").select("Español");
+        cy.get("#formBasicSourceLang").select("English");
+        cy.get("#formBasicTargetLang").select("Spanish");
         cy.get("button[type='submit']").click();
 
         cy.location("pathname").should("include", "my-forest");

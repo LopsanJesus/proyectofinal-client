@@ -87,7 +87,7 @@ const CreateBranchForm = ({ user }) => {
     <Container as={Col} md={{ span: 10, offset: 1 }} lg={{ span: 6, offset: 3 }}>
 
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
-        {formError && <Alert variant="danger">{formError}</Alert>}
+        {formError && <Alert id="formError" variant="danger">{formError}</Alert>}
 
         <Form.Group as={Row} controlId="formBasicName">
           <Form.Label>{t('branch.newBranchName')}</Form.Label>

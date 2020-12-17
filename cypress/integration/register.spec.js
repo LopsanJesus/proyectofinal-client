@@ -2,7 +2,7 @@ var faker = require('faker');
 
 context("Register", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/register");
+        cy.visit("/register");
     });
 
     it("can register", () => {
@@ -55,7 +55,7 @@ context("Register", () => {
         cy.get("button[type='submit']").click();
 
         cy.location("pathname").should("include", "register");
-        cy.get(".formError").should("have.text", "Las contraseñas no coinciden");
+        cy.get(".formError").should("have.text", "Passwords doesn't match");
     });
 
     it("can swap to login", () => {

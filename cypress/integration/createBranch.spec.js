@@ -4,7 +4,7 @@ context("Create Branch", () => {
     it("can create a branch", () => {
         cy.autoLogin();
         cy.wait(1000);
-        cy.visit("tree/4");
+        cy.visit("tree/10");
 
         cy.get(".createTreeButton").click();
 
@@ -19,13 +19,13 @@ context("Create Branch", () => {
         cy.get("button div").click();
         cy.wait(1000);
 
-        cy.location("pathname").should("include", "tree/4");
+        cy.location("pathname").should("include", "tree/10");
     });
 
     it("can't create with empty branch name", () => {
         cy.autoLogin();
         cy.wait(1000);
-        cy.visit("tree/4");
+        cy.visit("tree/10");
 
         // cy.location("pathname").should("include", "/tree/4");
 

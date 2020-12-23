@@ -60,7 +60,6 @@ function App() {
 
               <div className="content">
                 <Switch>
-
                   <ProtectedRoute path="/practice/:id">
                     <Practice />
                   </ProtectedRoute>

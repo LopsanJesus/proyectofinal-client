@@ -1,48 +1,48 @@
-var faker = require('faker');
+var faker = require("faker");
 
 context("Create Branch", () => {
-    it("can create a branch", () => {
-        cy.autoLogin();
-        cy.wait(1000);
-        cy.visit("tree/10");
+  it("can create a branch", () => {
+    cy.autoLogin();
+    cy.wait(1000);
+    cy.visit("tree/10");
 
-        cy.get(".createTreeButton").click();
+    cy.get(".createTreeButton").click();
 
-        const fakeBranch = "Test " + faker.lorem.word(10);
+    const fakeBranch = "Test " + faker.lorem.word(10);
 
-        cy.get("#formBasicName").type(fakeBranch);
+    cy.get("#formBasicName").type(fakeBranch);
 
-        cy.get(".col input").each(($el) => {
-            cy.get($el).type("a");
-        });
-
-        cy.get("button div").click();
-        cy.wait(1000);
-
-        cy.location("pathname").should("include", "tree/10");
+    cy.get(".col input").each(($el) => {
+      cy.get($el).type("a");
     });
 
-    it("can't create with empty branch name", () => {
-        cy.autoLogin();
-        cy.wait(1000);
-        cy.visit("tree/10");
+    cy.get("button div").click();
+    cy.wait(1000);
 
-        // cy.location("pathname").should("include", "/tree/4");
+    cy.location("pathname").should("include", "tree/10");
+  });
 
-        cy.get(".createTreeButton").click();
+  it("can't create with empty branch name", () => {
+    cy.autoLogin();
+    cy.wait(1000);
+    cy.visit("tree/10");
 
-        cy.location("pathname").should("include", "/create-branch/");
+    // cy.location("pathname").should("include", "/tree/4");
 
-        const fakeBranch = "Test " + faker.lorem.word(10);
+    cy.get(".createTreeButton").click();
 
-        //cy.get("#formBasicName").type("");
+    cy.location("pathname").should("include", "/create-branch/");
 
-        cy.get(".col input").each(($el) => {
-            cy.get($el).type("a");
-        });
+    const fakeBranch = "Test " + faker.lorem.word(10);
 
-        cy.get("button div").click();
+    //cy.get("#formBasicName").type("");
 
-        cy.get("#formError").should("have.text", "There cannot be empty fields")
+    cy.get(".col input").each(($el) => {
+      cy.get($el).type("a");
     });
+
+    cy.get("button div").click();
+
+    cy.get("#formError").should("have.text", "There cannot be empty fields");
+  });
 });

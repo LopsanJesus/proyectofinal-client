@@ -1,9 +1,9 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import EmptyLine from './EmptyLine';
+import React from "react";
+import { shallow } from "enzyme";
+import EmptyLine from "./EmptyLine";
 
-describe('EmptyLine', () => {
-  test('matches snapshot', () => {
+describe("EmptyLine", () => {
+  test("matches snapshot", () => {
     const wrapper = shallow(<EmptyLine />);
     expect(wrapper).toMatchSnapshot();
   });

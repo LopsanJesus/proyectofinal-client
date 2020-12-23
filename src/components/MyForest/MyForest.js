@@ -18,24 +18,26 @@ const MyForest = ({ user, trees, saveUserForest }) => {
   const { t } = useTranslation();
 
   const { loading, error, data } = useQuery(GET_MY_FOREST, {
-    fetchPolicy: "network-only"
+    fetchPolicy: "network-only",
   });
 
-  if (loading) return <div>Haciendo crecer los árboles... (Sin materiales radiactivos)</div>
-  if (error) return <div>ERROR. No podemos encontrar el bosque en el mapa.</div>
+  if (loading)
+    return (
+      <div>Haciendo crecer los árboles... (Sin materiales radiactivos)</div>
+    );
+  if (error)
+    return <div>ERROR. No podemos encontrar el bosque en el mapa.</div>;
 
-  saveUserForest(data.getMyForest)
+  saveUserForest(data.getMyForest);
 
   return (
     <Container fluid className="MyForest">
-      <h2 className="header-title">{t('myForest')}</h2>
+      <h2 className="header-title">{t("myForest")}</h2>
       <TreeList user={user} trees={trees} view="myForest" />
       <CreateTreeButton />
-      <p className="secondary-option">{t('treeList.importSuggestion')}</p>
+      <p className="secondary-option">{t("treeList.importSuggestion")}</p>
       <Link to="/discover">
-        <Button variant="primary">
-          {t('treeList.goToDiscover')}
-        </Button>
+        <Button variant="primary">{t("treeList.goToDiscover")}</Button>
       </Link>
     </Container>
   );

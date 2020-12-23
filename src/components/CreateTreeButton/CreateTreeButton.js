@@ -15,7 +15,7 @@ const CreateTreeButton = () => {
       <Card className="createTreeButton">
         <Card.Body>
           <PlusCircle size={30} className="plusIcon" />
-          <Card.Title>{t('treeList.addTree')}</Card.Title>
+          <Card.Title>{t("treeList.addTree")}</Card.Title>
         </Card.Body>
       </Card>
     </Link>

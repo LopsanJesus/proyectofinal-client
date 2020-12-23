@@ -4,7 +4,7 @@ context("Window", () => {
     cy.title().should("include", "Treelang");
   });
 
-  it("waits for GET", () => {
+  it("waits for Graphql", () => {
     cy.intercept("POST", "**/graphql").as("getGraphql");
 
     cy.visit("/");

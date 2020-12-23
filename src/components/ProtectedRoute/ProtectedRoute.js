@@ -3,15 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import "./ProtectedRoute.scss";
 
-const ProtectedRoute = ({
-  user,
-  children,
-  location,
-  ...props
-}) => {
-
-  if (!user)
-    return <Redirect to={"/login" + location.pathname} />;
+const ProtectedRoute = ({ user, children, location, ...props }) => {
+  if (!user) return <Redirect to={"/login" + location.pathname} />;
 
   return <Route {...props}>{children}</Route>;
 };

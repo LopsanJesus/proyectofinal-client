@@ -20,21 +20,26 @@ const Tree = ({ user }) => {
 
   const { loading: loadingTree, error, data } = useQuery(GET_TREE, {
     fetchPolicy: "network-only",
-    variables: { id: parseInt(params.id) }
+    variables: { id: parseInt(params.id) },
   });
 
   const [importTreeMutation] = useMutation(IMPORT_TREE, {
     onError(error) {
       alert("Error al importar" + error);
     },
-    onCompleted() {
-    },
+    onCompleted() {},
   });
 
-  if (loadingTree) return <div>Loading...</div>
-  if (error) return <div>ERROR. Ese árbol no existe.</div>
+  if (loadingTree) return <div>Loading...</div>;
+  if (error) return <div>ERROR. Ese árbol no existe.</div>;
 
-  if (!checked && user && data.getTree.importedBy.filter((importedTree) => importedTree.userId.id === user.id).length > 0)
+  if (
+    !checked &&
+    user &&
+    data.getTree.importedBy.filter(
+      (importedTree) => importedTree.userId.id === user.id
+    ).length > 0
+  )
     setChecked("checked");
 
   const handleStarClick = () => {
@@ -42,33 +47,23 @@ const Tree = ({ user }) => {
       setChecked("checked");
       importTreeMutation({
         variables: {
-          id: parseInt(params.id)
-        }
+          id: parseInt(params.id),
+        },
       });
     }
-  }
+  };
 
   return (
     <Container fluid className="Tree">
-      {!user &&
-        <Alert variant="warning">
-          {t('treeList.needToAccess')}
-        </Alert>
-      }
-      {user && !checked &&
-        <Alert variant="primary">
-          {t('treeList.addToForestSuggestion')}
-        </Alert>
-      }
+      {!user && <Alert variant="warning">{t("treeList.needToAccess")}</Alert>}
+      {user && !checked && (
+        <Alert variant="primary">{t("treeList.addToForestSuggestion")}</Alert>
+      )}
       {!data.getTree.branches.find((branch) => {
         return branch.leaves.find((leaf) => {
-          return leaf
-        })
-      }) &&
-        <Alert variant="warning">
-          {t('treeList.noLeavesNoPractice')}
-        </Alert>
-      }
+          return leaf;
+        });
+      }) && <Alert variant="warning">{t("treeList.noLeavesNoPractice")}</Alert>}
       <h3 className="tree-header">
         <Image
           src={"/" + data.getTree.sourceLang.code + ".png"}
@@ -84,32 +79,40 @@ const Tree = ({ user }) => {
           roundedCircle
         />
         {data.getTree.name}
-        {user &&
+        {user && (
           <span
             className={"fa fa-star " + checked}
             onClick={handleStarClick}
             title="Añadir a Mi Bosque"
-          ></span>}
-        {checked &&
+          ></span>
+        )}
+        {checked && (
           <Link to={"/practice/" + params.id}>
             <Button
               variant="primary"
               disabled={
                 data.getTree.branches.find((branch) => {
                   return branch.leaves.find((leaf) => {
-                    return leaf
-                  })
-                }) ?
-                  null
+                    return leaf;
+                  });
+                })
+                  ? null
                   : "disabled"
               }
-            >{t('branch.testTreeButton')}</Button>
+            >
+              {t("branch.testTreeButton")}
+            </Button>
           </Link>
-        }
+        )}
       </h3>
-      <BranchList branches={data.getTree.branches} isImported={checked !== ""} />
+      <BranchList
+        branches={data.getTree.branches}
+        isImported={checked !== ""}
+      />
 
-      {user && data.getTree.owner.id === user.id && <CreateBranchButton treeId={params.id} />}
+      {user && data.getTree.owner.id === user.id && (
+        <CreateBranchButton treeId={params.id} />
+      )}
     </Container>
   );
 };

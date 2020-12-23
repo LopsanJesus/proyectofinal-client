@@ -10,11 +10,12 @@ const BranchCard = ({ user, branch, isImported }) => {
   const { t } = useTranslation();
   let numberOfApples = 0;
 
-  user && branch.leaves.map((leaf) => {
-    return numberOfApples += leaf.leafRecords.filter((record) =>
-      record.isApple && record.importedTree.userId.id === user.id
-    ).length;
-  });
+  user &&
+    branch.leaves.map((leaf) => {
+      return (numberOfApples += leaf.leafRecords.filter(
+        (record) => record.isApple && record.importedTree.userId.id === user.id
+      ).length);
+    });
 
   return (
     <Link to={"/branch/" + branch.id}>
@@ -22,10 +23,19 @@ const BranchCard = ({ user, branch, isImported }) => {
         <Card.Body>
           <Card.Title>{branch.name}</Card.Title>
           <Card.Text>
-            {isImported ?
-              <span>{numberOfApples + " " + t('branch.apples') + " / " + branch.leaves.length + " " + t('branch.leaves')}</span>
-              : <span>{branch.leaves.length + " " + t('branch.leaves')}</span>
-            }
+            {isImported ? (
+              <span>
+                {numberOfApples +
+                  " " +
+                  t("branch.apples") +
+                  " / " +
+                  branch.leaves.length +
+                  " " +
+                  t("branch.leaves")}
+              </span>
+            ) : (
+              <span>{branch.leaves.length + " " + t("branch.leaves")}</span>
+            )}
           </Card.Text>
         </Card.Body>
       </Card>

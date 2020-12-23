@@ -1,9 +1,9 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import LoginForm from './LoginForm';
+import React from "react";
+import { shallow } from "enzyme";
+import LoginForm from "./LoginForm";
 
-describe('LoginForm', () => {
-  test('matches snapshot', () => {
+describe("LoginForm", () => {
+  test("matches snapshot", () => {
     const wrapper = shallow(<LoginForm />);
     expect(wrapper).toMatchSnapshot();
   });

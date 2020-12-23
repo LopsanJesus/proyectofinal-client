@@ -1,16 +1,16 @@
-import { SAVE_USER_FOREST } from "../actions/forest"
+import { SAVE_USER_FOREST } from "../actions/forest";
 
 const initialState = {
-    trees: [],
-}
+  trees: [],
+};
 
 const forest = (state = initialState, action) => {
-    switch (action.type) {
-        case SAVE_USER_FOREST:
-            return { ...state, trees: action.trees }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case SAVE_USER_FOREST:
+      return { ...state, trees: action.trees };
+    default:
+      return state;
+  }
+};
 
-export default forest
+export default forest;

@@ -1,33 +1,13 @@
 .fa-star {
-    margin: 0 1em 0 1em;
+  margin: 0 1em 0 1em;
 }
 
 .checked {
-    color: orange;
-  }
+  color: orange;
+}
 
 .Tree {
-    .tree-header {
-        margin-bottom: 1em;
-    }
-    .source-language-flag {
-        width: 2em;
-        height: 2em;
-        border-radius: 3em;
-        margin-right: 1em;
-    }
-  
-    .arrow {
-        font-size: 2em;
-        position: relative;
-        top: 10px;
-    }
-
-    .target-language-flag {
-        width: 2em;
-        height: 2em;
-        border-radius: 3em;
-        margin-left: 1em;
-        margin-right: 1em;
-    }
+  .tree-header {
+    margin-bottom: 1em;
+  }
 }

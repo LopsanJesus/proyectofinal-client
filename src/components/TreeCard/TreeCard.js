@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Card, Image } from "react-bootstrap";
+import TreeLanguageFlags from "../TreeLanguageFlags";
+import { Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 import "./TreeCard.scss";
@@ -19,21 +20,10 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
             <Card.Title>
               <span className="title">{tree.customName}</span>
             </Card.Title>
-            <div>
-              <Image
-                src={tree.treeId.sourceLang.code + ".png"}
-                className="language-flag source-language-flag"
-                title="Already known"
-                roundedCircle
-              />
-              <span className="arrow">&#8680;</span>
-              <Image
-                src={tree.treeId.targetLang.code + ".png"}
-                className="language-flag target-language-flag"
-                title="Learning"
-                roundedCircle
-              />
-            </div>
+            <TreeLanguageFlags
+              sourceLangCode={tree.treeId.sourceLang.code}
+              targetLangCode={tree.treeId.targetLang.code}
+            />
           </div>
         </Card.Body>
         <Card.Footer>

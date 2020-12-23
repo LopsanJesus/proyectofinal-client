@@ -13,7 +13,7 @@ const TopBar = ({ user }) => {
   const src = "../../../full-apple.png";
 
   return (
-    <Navbar bg="light" variant="light" expand="sm" sticky="top">
+    <Navbar bg="light" variant="light" expand="md" sticky="top">
       <Navbar.Brand>
         <Link to="/">
           <img src="/treelang-title.png" alt={appConfig.title} />
@@ -50,12 +50,12 @@ const TopBar = ({ user }) => {
                 }
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item className="mr-auto">
-                  <Link to="/profile">{t("profile")}</Link>
+                <NavDropdown.Item as={Link} to="/profile" className="mr-auto">
+                  {t("profile")}
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item className="mr-auto">
-                  <Link to="/logout">{t("logout")}</Link>
+                <NavDropdown.Item as={Link} to="/logout" className="mr-auto">
+                  {t("logout")}
                 </NavDropdown.Item>
               </NavDropdown>
             </>

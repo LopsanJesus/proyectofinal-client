@@ -21,21 +21,6 @@ $createdByMeColor: #bcdcf7;
     width: 100%;
   }
 
-  .source-language-flag {
-    width: 2em;
-    height: 2em;
-    border-radius: 3em;
-    margin-right: 1em;
-  }
-  
-  .target-language-flag {
-    width: 4em;
-    height: 4em;
-    border-radius: 3em;
-    margin-left: 1em;
-  }
-
-
   &:hover {
     border: 1px solid black;
   }
@@ -43,11 +28,4 @@ $createdByMeColor: #bcdcf7;
   .created-by-me {
     background-color: $createdByMeColor;
   }
-
-}
-
-.arrow {
-  font-size: 3em;
-  position: relative;
-  top: 10px;
 }

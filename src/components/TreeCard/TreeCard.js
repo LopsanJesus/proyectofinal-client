@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import TreeLanguageFlags from "../TreeLanguageFlags";
-import { Card, Image } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 import "./TreeCard.scss";

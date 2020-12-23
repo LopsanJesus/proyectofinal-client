@@ -11,6 +11,12 @@ export const GET_QUESTIONS = gql`
           translation
         }
       }
+      sourceLang {
+        code
+      }
+      targetLang {
+        code
+      }
       importedBy {
         id
         userId {

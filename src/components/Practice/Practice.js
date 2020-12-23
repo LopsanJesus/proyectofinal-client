@@ -14,6 +14,8 @@ import { GET_QUESTIONS, RECORD_TEST } from "../../queries/practice";
 import { useMutation, useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import appConfig from "../../config/app";
+import TreeLanguageFlags from "../TreeLanguageFlags";
+
 import { useTranslation } from "react-i18next";
 
 const Practice = ({ user }) => {
@@ -146,6 +148,10 @@ const Practice = ({ user }) => {
         <>
           <div>
             <h3 className="tree-header">{data.getTree.name}</h3>
+            <TreeLanguageFlags
+              sourceLangCode={data.getTree.sourceLang.code}
+              targetLangCode={data.getTree.targetLang.code}
+            />
             <Container className="Practice">
               <ListGroup ref={translationsRef}>
                 {leaves.map((leaf) => {

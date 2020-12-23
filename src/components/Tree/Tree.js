@@ -4,13 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import BranchList from "../BranchList";
 import CreateBranchButton from "../CreateBranchButton";
 import Container from "react-bootstrap/Container";
+import TreeLanguageFlags from "../TreeLanguageFlags";
 
 import { GET_TREE, IMPORT_TREE } from "../../queries/forest";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
 import "./Tree.scss";
-import { Button, Image, Alert } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 const Tree = ({ user }) => {
@@ -65,18 +66,9 @@ const Tree = ({ user }) => {
         });
       }) && <Alert variant="warning">{t("treeList.noLeavesNoPractice")}</Alert>}
       <h3 className="tree-header">
-        <Image
-          src={"/" + data.getTree.sourceLang.code + ".png"}
-          className="language-flag source-language-flag"
-          title="Already known"
-          roundedCircle
-        />
-        <span className="arrow">&#8680;</span>
-        <Image
-          src={"/" + data.getTree.targetLang.code + ".png"}
-          className="language-flag target-language-flag"
-          title="Learning"
-          roundedCircle
+        <TreeLanguageFlags
+          sourceLangCode={data.getTree.sourceLang.code}
+          targetLangCode={data.getTree.targetLang.code}
         />
         {data.getTree.name}
         {user && (

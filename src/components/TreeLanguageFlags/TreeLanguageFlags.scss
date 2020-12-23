@@ -1,13 +1,16 @@
-.source-language-flag {
-  width: 2em;
-  height: 2em;
-  border-radius: 3em;
-  margin-right: 1em;
+.language-flag {
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
 }
 
 .target-language-flag {
-  width: 4em;
-  height: 4em;
-  border-radius: 3em;
-  margin-left: 1em;
+  margin-left: 14px;
+}
+
+.arrow {
+  font-size: 40px;
+  position: relative;
+  top: 10px;
+  color: rgba(128, 128, 128, 0.4);
 }

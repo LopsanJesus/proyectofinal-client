@@ -29,7 +29,7 @@ const LoginForm = ({ user, saveUserInfo }) => {
       setFormError(error.message);
     },
     onCompleted(result) {
-      localStorage.setItem("auth-token", result.login.token)
+      localStorage.setItem("auth-token", result.login.token);
       saveUserInfo(result.login.user);
       if (params.redirect && params.redirect !== "/logout")
         history.push("/" + params.redirect);
@@ -61,13 +61,13 @@ const LoginForm = ({ user, saveUserInfo }) => {
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
         {formError && <Alert variant="danger">{formError}</Alert>}
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>{t('form.email')}</Form.Label>
+          <Form.Label>{t("form.email")}</Form.Label>
           <Form.Control
             type="email"
             placeholder="Introduzca su email"
             ref={emailRef}
             autoComplete="email@domain.com"
-            defaultValue={query.get('email') ? query.get('email') : ""}
+            defaultValue={query.get("email") ? query.get("email") : ""}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -76,7 +76,7 @@ const LoginForm = ({ user, saveUserInfo }) => {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>{t('form.password')}</Form.Label>
+          <Form.Label>{t("form.password")}</Form.Label>
           <Form.Control
             type="password"
             placeholder="Contraseña"
@@ -100,16 +100,14 @@ const LoginForm = ({ user, saveUserInfo }) => {
                 aria-hidden="true"
               />
             ) : (
-                <div>{t('form.login')}</div>
-              )}
+              <div>{t("form.login")}</div>
+            )}
           </Button>
         </Form.Group>
 
         <Form.Group controlId="needAccount" className="needAccount">
           <Link to="/register">
-            <Button variant="outline-primary">
-              ¿No tiene cuenta todavía?
-            </Button>
+            <Button variant="outline-primary">¿No tiene cuenta todavía?</Button>
           </Link>
         </Form.Group>
       </Form>

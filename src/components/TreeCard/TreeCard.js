@@ -11,7 +11,7 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
   return (
     <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">
-        <Card.Body className={isCreatedByMe ? 'created-by-me' : ''}>
+        <Card.Body className={isCreatedByMe ? "created-by-me" : ""}>
           <div className="tree-icon">
             <Card.Img variant="top" src="./tree-icon.png" />
           </div>
@@ -38,7 +38,9 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
         </Card.Body>
         <Card.Footer>
           <small className="text-muted" title={tree.treeId.owner.email}>
-            {isCreatedByMe ? "Original" : t('treeList.createdBy') + ": " + tree.treeId.owner.name}
+            {isCreatedByMe
+              ? "Original"
+              : t("treeList.createdBy") + ": " + tree.treeId.owner.name}
           </small>
         </Card.Footer>
       </Card>

@@ -12,11 +12,19 @@ const BranchList = ({ branches, isImported }) => {
 
   return (
     <Container fluid className="BranchList">
-      {branches.length > 0 ? branches.map((branch) => {
-        return <BranchCard key={branch.id} branch={branch} isImported={isImported} />;
-      }) :
-        <Alert variant="info">{t('branch.noBranches')}</Alert>
-      }
+      {branches.length > 0 ? (
+        branches.map((branch) => {
+          return (
+            <BranchCard
+              key={branch.id}
+              branch={branch}
+              isImported={isImported}
+            />
+          );
+        })
+      ) : (
+        <Alert variant="info">{t("branch.noBranches")}</Alert>
+      )}
     </Container>
   );
 };

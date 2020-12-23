@@ -5,24 +5,24 @@ import en from "../locales/en/translation.json";
 import es from "../locales/es/translation.json";
 
 const resources = {
-    en: {
-        translation: en,
-    },
-    es: {
-        translation: es,
-    },
+  en: {
+    translation: en,
+  },
+  es: {
+    translation: es,
+  },
 };
 i18next
-    .use(initReactI18next)
-    .use(LanguageDetector)
-    .init({
-        resources,
-        //lng: "es",
-        supportedLngs: ["en", "es"],
-        fallbackLng: "en",
-        //debug: process.env.NODE_ENV === "development",
-        interpolation: {
-            escapeValue: false,
-        },
-    });
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    resources,
+    //lng: "es",
+    supportedLngs: ["en", "es"],
+    fallbackLng: "en",
+    //debug: process.env.NODE_ENV === "development",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 export default i18next;

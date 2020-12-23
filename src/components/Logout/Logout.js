@@ -1,11 +1,11 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import './Logout.scss';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import "./Logout.scss";
 import { connect } from "react-redux";
-import { userLogout } from '../../actions/root';
+import { userLogout } from "../../actions/root";
 
 const Logout = ({ userLogout }) => {
-  console.log("Loggin out...")
+  console.log("Loggin out...");
   localStorage.removeItem("auth-token");
   userLogout();
   return <Redirect to="/login" />;

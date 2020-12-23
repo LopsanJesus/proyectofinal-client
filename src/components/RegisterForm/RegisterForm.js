@@ -42,7 +42,7 @@ const RegisterForm = () => {
     setValidated(true);
 
     if (confirmPasswordRef.current.value !== passwordRef.current.value) {
-      setFormError(t('form.passwordMatchFeedback'));
+      setFormError(t("form.passwordMatchFeedback"));
       return false;
     }
 
@@ -61,27 +61,31 @@ const RegisterForm = () => {
 
   return (
     <Container as={Col} md={{ span: 8, offset: 2 }} lg={{ span: 4, offset: 4 }}>
-      <h3>{t('registerTitle')}</h3>
+      <h3>{t("registerTitle")}</h3>
 
       <Form noValidate validated={validated} onSubmit={HandleSubmit}>
-        {formError && <Alert className="formError" variant="danger">{formError}</Alert>}
+        {formError && (
+          <Alert className="formError" variant="danger">
+            {formError}
+          </Alert>
+        )}
 
         <Form.Group controlId="formBasicName">
-          <Form.Label>{t('form.name')}</Form.Label>
+          <Form.Label>{t("form.name")}</Form.Label>
           <Form.Control
             type="text"
-            placeholder={t('form.namePlaceholder')}
+            placeholder={t("form.namePlaceholder")}
             ref={nameRef}
             autoComplete="email@domain.com"
             required
           />
           <Form.Control.Feedback type="invalid">
-            {t('form.nameFeedback')}
+            {t("form.nameFeedback")}
           </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>{t('form.email')}</Form.Label>
+          <Form.Label>{t("form.email")}</Form.Label>
           <Form.Control
             type="email"
             placeholder="Introduzca su email"
@@ -95,7 +99,7 @@ const RegisterForm = () => {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>{t('form.password')}</Form.Label>
+          <Form.Label>{t("form.password")}</Form.Label>
           <Form.Control
             type="password"
             placeholder="Contraseña"
@@ -109,7 +113,7 @@ const RegisterForm = () => {
         </Form.Group>
 
         <Form.Group controlId="formBasicConfirmPassword">
-          <Form.Label>{t('form.confirmPassword')}</Form.Label>
+          <Form.Label>{t("form.confirmPassword")}</Form.Label>
           <Form.Control
             type="password"
             placeholder="Confirmar contraseña"
@@ -118,7 +122,7 @@ const RegisterForm = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            {t('form.passwordMatchFeedback')}
+            {t("form.passwordMatchFeedback")}
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -133,19 +137,16 @@ const RegisterForm = () => {
                 aria-hidden="true"
               />
             ) : (
-                <div>{t('form.register')}</div>
-              )}
+              <div>{t("form.register")}</div>
+            )}
           </Button>
         </Form.Group>
 
         <Form.Group controlId="alreadyRegistered" className="alreadyRegistered">
           <Link to="/login">
-            <Button variant="outline-primary">
-              ¿Ya tiene cuenta?
-            </Button>
+            <Button variant="outline-primary">¿Ya tiene cuenta?</Button>
           </Link>
         </Form.Group>
-
       </Form>
     </Container>
   );

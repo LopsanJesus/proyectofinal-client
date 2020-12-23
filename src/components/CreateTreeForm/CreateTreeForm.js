@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Alert, Button, Col, Container, Form, Spinner } from 'react-bootstrap';
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Alert, Button, Col, Container, Form, Spinner } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
-import { useTranslation } from 'react-i18next';
-import './CreateTreeForm.scss';
+import { useTranslation } from "react-i18next";
+import "./CreateTreeForm.scss";
 
 import { CREATE_TREE, GET_ALL_LANGUAGES } from "../../queries/forest";
 
@@ -17,7 +17,9 @@ const CreateTreeForm = () => {
   const [validated, setValidated] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const { loading: loadingLanguages, error, data } = useQuery(GET_ALL_LANGUAGES);
+  const { loading: loadingLanguages, error, data } = useQuery(
+    GET_ALL_LANGUAGES
+  );
 
   const [importTreeMutation, { loading }] = useMutation(CREATE_TREE, {
     onError(error) {
@@ -64,21 +66,21 @@ const CreateTreeForm = () => {
         {formError && <Alert variant="danger">{formError}</Alert>}
 
         <Form.Group controlId="formBasicName">
-          <Form.Label>{t('form.name')}</Form.Label>
+          <Form.Label>{t("form.name")}</Form.Label>
           <Form.Control
             type="text"
-            placeholder={t('form.namePlaceholder')}
+            placeholder={t("form.namePlaceholder")}
             ref={nameRef}
             autoComplete="email@domain.com"
             required
           />
           <Form.Control.Feedback type="invalid">
-            {t('form.nameFeedback')}
+            {t("form.nameFeedback")}
             {/* Por favor introduzca un email válido. */}
           </Form.Control.Feedback>
         </Form.Group>
 
-        {data &&
+        {data && (
           <>
             <Form.Group controlId="formBasicSourceLang">
               <Form.Label>Idioma origen</Form.Label>
@@ -91,7 +93,11 @@ const CreateTreeForm = () => {
                 required
               >
                 {data.getAllLanguages.map((language) => {
-                  return <option key={language.id} value={language.id}>{t('languages.codes.' + language.code)}</option>
+                  return (
+                    <option key={language.id} value={language.id}>
+                      {t("languages.codes." + language.code)}
+                    </option>
+                  );
                 })}
               </Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -109,9 +115,14 @@ const CreateTreeForm = () => {
                 ref={targetLangRef}
                 required
               >
-                {data && data.getAllLanguages.map((language) => {
-                  return <option key={language.id} value={language.id}>{t('languages.codes.' + language.code)}</option>
-                })}
+                {data &&
+                  data.getAllLanguages.map((language) => {
+                    return (
+                      <option key={language.id} value={language.id}>
+                        {t("languages.codes." + language.code)}
+                      </option>
+                    );
+                  })}
               </Form.Control>
               <Form.Control.Feedback type="invalid">
                 Por favor introduzca un email válido.
@@ -128,11 +139,11 @@ const CreateTreeForm = () => {
                   aria-hidden="true"
                 />
               ) : (
-                  <div>Crear</div>
-                )}
+                <div>Crear</div>
+              )}
             </Button>
           </>
-        }
+        )}
       </Form>
     </Container>
   );

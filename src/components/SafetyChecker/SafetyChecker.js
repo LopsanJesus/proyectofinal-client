@@ -5,12 +5,16 @@ import { useQuery } from "@apollo/client";
 import { saveUserInfo } from "../../actions/userInfo";
 import { userLogout } from "../../actions/root";
 
-const SafetyChecker = ({ user, saveUserInfo, children }) => {
+export const SafetyChecker = ({ user, saveUserInfo, userLogout, children }) => {
   const { error, data } = useQuery(GET_ME, {
     fetchPolicy: "network-only",
   });
 
-  if (error) userLogout();
+  if (error) {
+    //localStorage.removeItem("auth-token");
+
+    userLogout();
+  }
 
   if (localStorage.getItem("auth-token") && !user && data) {
     saveUserInfo({

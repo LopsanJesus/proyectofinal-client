@@ -41,6 +41,7 @@ const Discover = ({ user }) => {
           sourceLang: tree.sourceLang,
           targetLang: tree.targetLang,
           branches: tree.branches,
+          importedBy: tree.importedBy,
         },
       };
     });

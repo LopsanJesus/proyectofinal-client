@@ -9,6 +9,7 @@ import "./TreeCard.scss";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
   const { t } = useTranslation();
+  console.log(tree);
   return (
     <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">
@@ -28,9 +29,17 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
         </Card.Body>
         <Card.Footer>
           <small className="text-muted" title={tree.treeId.owner.email}>
-            {isCreatedByMe
-              ? "Original"
-              : t("treeList.createdBy") + ": " + tree.treeId.owner.name}
+            {isCreatedByMe ? (
+              "Original"
+            ) : (
+              <>
+                {tree.treeId.owner.name}
+                <span className="imported-by">
+                  <span className="fa fa-star checked"></span>
+                  {tree.treeId.importedBy.length}
+                </span>
+              </>
+            )}
           </small>
         </Card.Footer>
       </Card>

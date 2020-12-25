@@ -25,7 +25,19 @@ $createdByMeColor: #bcdcf7;
     border: 1px solid black;
   }
 
-  .created-by-me {
-    background-color: $createdByMeColor;
+  .text-muted {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    .created-by-me {
+      background-color: $createdByMeColor;
+    }
+
+    .imported-by {
+      float: right;
+      font-size: 1.5em;
+      .fa-star {
+        margin: 0 5px 0 0;
+      }
+    }
   }
 }

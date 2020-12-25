@@ -73,14 +73,12 @@ describe("Practice", () => {
     test("", async () => {
       let wrapper;
 
-      act(async () => {
+      await act(async () => {
         wrapper = mount(wrapHoc(<Practice />, store, mockGetQuestions));
         // Wait until the query is resolved
-        await wait(0);
+
         wrapper.update();
       });
-
-      console.log(wrapper.debug());
     });
   });
 });

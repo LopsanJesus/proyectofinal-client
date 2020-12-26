@@ -11,14 +11,14 @@ const CreateTreeButton = () => {
   const { t } = useTranslation();
 
   return (
-    <Link to="/create-tree">
-      <Card className="createTreeButton">
+    <Card className="createTreeButton">
+      <Link to="/create-tree">
         <Card.Body>
           <PlusCircle size={30} className="plusIcon" />
           <Card.Title>{t("treeList.addTree")}</Card.Title>
         </Card.Body>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };
 

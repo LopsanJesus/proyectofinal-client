@@ -29,7 +29,6 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
             {isCreatedByMe ? "Original" : tree.treeId.owner.name}
             <span className="imported-by">
               <span className="fa fa-star checked"></span>
-              {console.log(tree)}
               {tree.treeId.importedBy.length}
             </span>
           </small>

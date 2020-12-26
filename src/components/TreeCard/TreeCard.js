@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 
 import TreeLanguageFlags from "../TreeLanguageFlags";
 import { Card } from "react-bootstrap";
-// import { useTranslation } from "react-i18next";
 
 import "./TreeCard.scss";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
-  // const { t } = useTranslation();
   console.log(tree);
   return (
     <Link to={"/tree/" + tree.treeId.id}>

@@ -1,4 +1,4 @@
-$createdByMeColor: #bcdcf7;
+$createdByMeColor: #d2e5f5;
 
 .tree {
   min-width: 300px;
@@ -7,6 +7,9 @@ $createdByMeColor: #bcdcf7;
   max-height: 220px;
   margin-right: 20px;
   margin-bottom: 20px;
+  .created-by-me {
+    background-color: $createdByMeColor;
+  }
 
   .card-body {
     display: flex;
@@ -28,9 +31,6 @@ $createdByMeColor: #bcdcf7;
   .text-muted {
     font-weight: bold;
     letter-spacing: 0.5px;
-    .created-by-me {
-      background-color: $createdByMeColor;
-    }
 
     .imported-by {
       float: right;

@@ -26,18 +26,12 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
         </Card.Body>
         <Card.Footer>
           <small className="text-muted" title={tree.treeId.owner.email}>
-            {isCreatedByMe ? (
-              "Original"
-            ) : (
-              <>
-                {tree.treeId.owner.name}
-                <span className="imported-by">
-                  <span className="fa fa-star checked"></span>
-                  {console.log(tree)}
-                  {tree.treeId.importedBy.length}
-                </span>
-              </>
-            )}
+            {isCreatedByMe ? "Original" : tree.treeId.owner.name}
+            <span className="imported-by">
+              <span className="fa fa-star checked"></span>
+              {console.log(tree)}
+              {tree.treeId.importedBy.length}
+            </span>
           </small>
         </Card.Footer>
       </Card>

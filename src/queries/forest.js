@@ -30,6 +30,12 @@ export const GET_MY_FOREST = gql`
           id
           name
         }
+        importedBy {
+          id
+          userId {
+            id
+          }
+        }
       }
     }
   }

@@ -7,7 +7,6 @@ import { Card } from "react-bootstrap";
 import "./TreeCard.scss";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
-  console.log(tree);
   return (
     <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">

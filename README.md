@@ -1,3 +1,3 @@
 # Treelang Client
 
-- Emtpy?
+- Emtpy

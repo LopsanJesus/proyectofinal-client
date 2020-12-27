@@ -11,8 +11,7 @@ export const SafetyChecker = ({ user, saveUserInfo, userLogout, children }) => {
   });
 
   if (error) {
-    //localStorage.removeItem("auth-token");
-
+    localStorage.removeItem("auth-token");
     userLogout();
   }
 

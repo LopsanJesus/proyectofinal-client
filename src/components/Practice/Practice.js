@@ -18,7 +18,7 @@ import TreeLanguageFlags from "../TreeLanguageFlags";
 
 import { useTranslation } from "react-i18next";
 
-const Practice = ({ user }) => {
+export const Practice = ({ user }) => {
   const { t } = useTranslation();
   const params = useParams();
   const [view, setView] = useState("preview");

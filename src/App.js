@@ -20,7 +20,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout";
 import NotFound from "./components/NotFound";
 import "./config/i18n";
-import SafetyChecker from "./components/SafetyChecker";
 import CreateTreeForm from "./components/CreateTreeForm";
 import CreateBranchForm from "./components/CreateBranchForm";
 
@@ -53,68 +52,65 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <SafetyChecker>
-          <Router>
-            <div className="router">
-              <TopBar />
+        <Router>
+          <div className="router">
+            <TopBar />
+            <div className="content">
+              <Switch>
+                <ProtectedRoute path="/practice/:id">
+                  <Practice />
+                </ProtectedRoute>
 
-              <div className="content">
-                <Switch>
-                  <ProtectedRoute path="/practice/:id">
-                    <Practice />
-                  </ProtectedRoute>
+                <Route path="/discover">
+                  <Discover />
+                </Route>
+                <ProtectedRoute exact path="/my-forest">
+                  <MyForest />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/my-history">
+                  <MyHistory />
+                </ProtectedRoute>
 
-                  <Route path="/discover">
-                    <Discover />
-                  </Route>
-                  <ProtectedRoute exact path="/my-forest">
-                    <MyForest />
-                  </ProtectedRoute>
-                  <ProtectedRoute exact path="/my-history">
-                    <MyHistory />
-                  </ProtectedRoute>
+                <ProtectedRoute exact path="/create-tree">
+                  <CreateTreeForm />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/create-branch/:treeId">
+                  <CreateBranchForm />
+                </ProtectedRoute>
 
-                  <ProtectedRoute exact path="/create-tree">
-                    <CreateTreeForm />
-                  </ProtectedRoute>
-                  <ProtectedRoute exact path="/create-branch/:treeId">
-                    <CreateBranchForm />
-                  </ProtectedRoute>
+                <Route path="/tree/:id">
+                  <Tree />
+                </Route>
+                <Route path="/branch/:id">
+                  <Branch />
+                </Route>
 
-                  <Route path="/tree/:id">
-                    <Tree />
-                  </Route>
-                  <Route path="/branch/:id">
-                    <Branch />
-                  </Route>
+                <ProtectedRoute exact path="/profile">
+                  <Profile />
+                </ProtectedRoute>
+                <Route exact path="/about">
+                  <About />
+                </Route>
 
-                  <ProtectedRoute exact path="/profile">
-                    <Profile />
-                  </ProtectedRoute>
-                  <Route exact path="/about">
-                    <About />
-                  </Route>
+                <Route path="/login/:redirect?">
+                  <LoginForm />
+                </Route>
+                <Route path="/register">
+                  <RegisterForm />
+                </Route>
 
-                  <Route path="/login/:redirect?">
-                    <LoginForm />
-                  </Route>
-                  <Route path="/register">
-                    <RegisterForm />
-                  </Route>
-
-                  <ProtectedRoute exact path="/logout">
-                    <Logout />
-                  </ProtectedRoute>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                  <NotFound />
-                  <Redirect to="/" />
-                </Switch>
-              </div>
+                <ProtectedRoute exact path="/logout">
+                  <Logout />
+                </ProtectedRoute>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <NotFound />
+                <Redirect to="/" />
+              </Switch>
             </div>
-          </Router>
-        </SafetyChecker>
+          </div>
+        </Router>
       </div>
     </ApolloProvider>
   );

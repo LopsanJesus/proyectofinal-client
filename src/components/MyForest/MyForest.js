@@ -16,7 +16,7 @@ const MyForest = ({ user }) => {
   const { t } = useTranslation();
 
   const { loading, error, data } = useQuery(GET_MY_FOREST, {
-    fetchPolicy: "network-only",
+    fetchPolicy: "cache-and-network",
   });
 
   if (loading)

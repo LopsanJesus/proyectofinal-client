@@ -4,13 +4,24 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import appConfig from "../../config/app";
-import { NavDropdown } from "react-bootstrap";
+import { NavDropdown, Spinner } from "react-bootstrap";
 import "./TopBar.scss";
 import { useTranslation } from "react-i18next";
+import { GET_ME } from "../../queries/user";
+import { useQuery } from "@apollo/client";
+import { saveUserInfo } from "../../actions/userInfo";
 
-const TopBar = ({ user }) => {
+const TopBar = ({ user, saveUserInfo }) => {
   const { t } = useTranslation();
   const src = "../../../full-apple.png";
+
+  const { loading, data } = useQuery(GET_ME, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  if (!loading && data && localStorage.getItem("auth-token") && !user) {
+    saveUserInfo({ ...data.getMe });
+  }
 
   return (
     <Navbar bg="light" variant="light" expand="md" sticky="top">
@@ -25,7 +36,7 @@ const TopBar = ({ user }) => {
           <Nav.Item className="mr-auto">
             <Link to="/discover">{t("discover.link")}</Link>
           </Nav.Item>
-          {user && (
+          {!loading && user && (
             <>
               <Nav.Item className="mr-auto">
                 <Link to="/my-forest">{t("myForest")}</Link>
@@ -37,7 +48,7 @@ const TopBar = ({ user }) => {
           )}
         </Nav>
         <Nav id="right-nav">
-          {user ? (
+          {!loading && user ? (
             <>
               <Navbar.Text className="Username">
                 {user && user.name}
@@ -59,6 +70,16 @@ const TopBar = ({ user }) => {
                 </NavDropdown.Item>
               </NavDropdown>
             </>
+          ) : loading ? (
+            <Nav.Link className="mr-auto">
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            </Nav.Link>
           ) : (
             <>
               <Nav.Link className="mr-auto">
@@ -78,4 +99,8 @@ const mapStateToProps = ({ userInfo }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(TopBar);
+const mapDispatchToProps = (dispatch) => ({
+  saveUserInfo: (user) => dispatch(saveUserInfo(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

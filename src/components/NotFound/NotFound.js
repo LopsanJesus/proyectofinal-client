@@ -5,7 +5,7 @@ import "./NotFound.scss";
 const NotFound = () => {
   return (
     <>
-      404 NotFound
+      <h1>404 NotFound</h1>
       <br></br>
       <Link to="/login">Login</Link>
     </>

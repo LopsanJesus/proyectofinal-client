@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NotFound.scss";
 
@@ -7,7 +8,9 @@ const NotFound = () => {
     <>
       <h1>404 NotFound</h1>
       <br></br>
-      <Link to="/login">Login</Link>
+      <Button>
+        <Link to="/">Take me out of here</Link>
+      </Button>
     </>
   );
 };

@@ -5,8 +5,13 @@ import TreeLanguageFlags from "../TreeLanguageFlags";
 import { Card } from "react-bootstrap";
 
 import "./TreeCard.scss";
+import { useTranslation } from "react-i18next";
 
 const TreeCard = ({ tree, isCreatedByMe }) => {
+  const { t } = useTranslation();
+
+  const importedTimes = tree.treeId.importedBy.length;
+
   return (
     <Link to={"/tree/" + tree.treeId.id}>
       <Card className="tree">
@@ -25,11 +30,22 @@ const TreeCard = ({ tree, isCreatedByMe }) => {
           </div>
         </Card.Body>
         <Card.Footer>
-          <small className="text-muted" title={tree.treeId.owner.email}>
-            {isCreatedByMe ? "Original" : tree.treeId.owner.name}
-            <span className="imported-by">
+          <small className="text-muted">
+            <span title={tree.treeId.owner.email}>
+              {isCreatedByMe ? "Original" : tree.treeId.owner.name}
+            </span>
+            <span
+              className="imported-by"
+              title={
+                t("treeList.imported") +
+                " " +
+                importedTimes +
+                " " +
+                t("treeList.times")
+              }
+            >
               <span className="fa fa-star checked"></span>
-              {tree.treeId.importedBy.length}
+              {importedTimes}
             </span>
           </small>
         </Card.Footer>

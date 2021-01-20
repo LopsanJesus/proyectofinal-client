@@ -21,7 +21,8 @@
     "playground": "GraphQL Playground"
   },
   "treeList": {
-    "createdBy": "Created by",
+    "imported": "Imported",
+    "times": "times",
     "addTree": "Add Tree",
     "noTrees": "No trees to show",
     "importSuggestion": "Or you can import another user's tree:",

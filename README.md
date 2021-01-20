@@ -1,3 +1,3 @@
-# Treelang Client
+# Treelang
 
-- Emtpy
+Your platform for vocabulary learning

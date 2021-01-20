@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <Card bg="info" text="white" className="aboutCard">
-        <Card.Header>{t("about.daw")}</Card.Header>
+        <Card.Header>{t("about.title")}</Card.Header>
         <Card.Body>
           <Card.Title>Jesús López Sánchez (lopsanjesus@gmail.com)</Card.Title>
           <Card.Text>

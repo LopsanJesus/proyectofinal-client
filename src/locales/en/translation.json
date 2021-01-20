@@ -6,18 +6,15 @@
   "registerTitle": "New User",
   "home": {
     "welcome": "Welcome to Treelang!",
-    "inTreelangTitle": "In Treelang you might find:",
-    "learning": "Learning",
-    "fun": "Fun",
-    "muchmore": "And much more",
-    "letsStart": "Let's Start!",
+    "inTreelangTitle": "Learn and practice!",
+    "letsStart": "Let's start!",
     "knowMoreAboutUs": "Want to know about us?",
     "about": "About",
     "changeLanguage": "Change language:"
   },
   "about": {
-    "daw": "Web Application Deployment",
-    "repositories": "Repositories",
+    "title": "Software Developer",
+    "repositories": "Treelang repositories:",
     "client": "Client",
     "server": "Server",
     "links": "Links:",

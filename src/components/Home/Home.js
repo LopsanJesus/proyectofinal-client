@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import Flag from "../Flag/Flag";
 import "./Home.scss";
 
 const Home = () => {
@@ -13,28 +14,34 @@ const Home = () => {
 
   return (
     <div>
-      <h1>{t("home.welcome")}</h1>
+      <h1 className="prueba">{t("home.welcome")}</h1>
       <Container>
         <Row>
           <Col>
-            <h3>{t("home.inTreelangTitle")}</h3>
+            <h3 className="inTreelangTitle">{t("home.inTreelangTitle")}</h3>
           </Col>
           <Col>
-            <h3>{t("home.knowMoreAboutUs")}</h3>
+            <h4>{t("home.knowMoreAboutUs")}</h4>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p>{t("home.learning")}</p>
-            <p>{t("home.fun")}</p>
-            <p>{t("home.muchmore")}</p>
+            <p className="flagsParagraph">
+              <Flag src="es" />
+              <Flag src="fr" />
+              <Flag src="en" />
+              <Flag src="it" />
+              <Flag src="de" />
+            </p>
             <Link to="/discover">
-              <Button variant="primary">{t("home.letsStart")}</Button>
+              <Button variant="success" size="lg">
+                {t("home.letsStart")}
+              </Button>
             </Link>
           </Col>
           <Col>
             <Link to="/about">
-              <Button variant="primary" className="homeButton">
+              <Button variant="info" className="aboutButton">
                 {t("home.about")}
               </Button>
             </Link>

@@ -5,19 +5,16 @@
   "logout": "Cerrar sesión",
   "registerTitle": "Nuevo Usuario",
   "home": {
-    "welcome": "¡Bienvenido a Treelang!",
-    "inTreelangTitle": "En Treelang podrá encontrar:",
-    "learning": "Aprendizaje",
-    "fun": "Diversión",
-    "muchmore": "Y mucho más",
+    "welcome": "¡Bienvenid@ a Treelang!",
+    "inTreelangTitle": "¡Aprende y practica vocabulario!",
     "letsStart": "¡Empecemos!",
     "knowMoreAboutUs": "¿Quieres saber más sobre nosotros?",
     "about": "Contacto",
     "changeLanguage": "Cambiar idioma:"
   },
   "about": {
-    "daw": "Despliegue de Aplicaciones Web",
-    "repositories": "Repositorios",
+    "title": "Desarrollador Software",
+    "repositories": "Repositorios de Treelang:",
     "client": "Cliente",
     "server": "Servidor",
     "links": "Enlaces:",

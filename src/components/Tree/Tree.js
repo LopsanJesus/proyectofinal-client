@@ -70,32 +70,34 @@ const Tree = ({ user }) => {
           sourceLangCode={data.getTree.sourceLang.code}
           targetLangCode={data.getTree.targetLang.code}
         />
-        {data.getTree.name}
-        {user && (
-          <span
-            className={"fa fa-star " + checked}
-            onClick={handleStarClick}
-            title="Añadir a Mi Bosque"
-          ></span>
-        )}
-        {checked && (
-          <Link to={"/practice/" + params.id}>
-            <Button
-              variant="primary"
-              disabled={
-                data.getTree.branches.find((branch) => {
-                  return branch.leaves.find((leaf) => {
-                    return leaf;
-                  });
-                })
-                  ? null
-                  : "disabled"
-              }
-            >
-              {t("branch.testTreeButton")}
-            </Button>
-          </Link>
-        )}
+        <div className="treeTitleAndTools">
+          {data.getTree.name}
+          {user && (
+            <span
+              className={"fa fa-star " + checked}
+              onClick={handleStarClick}
+              title="Añadir a Mi Bosque"
+            ></span>
+          )}
+          {checked && (
+            <Link to={"/practice/" + params.id}>
+              <Button
+                variant="primary"
+                disabled={
+                  data.getTree.branches.find((branch) => {
+                    return branch.leaves.find((leaf) => {
+                      return leaf;
+                    });
+                  })
+                    ? null
+                    : "disabled"
+                }
+              >
+                {t("branch.testTreeButton")}
+              </Button>
+            </Link>
+          )}
+        </div>
       </h3>
       <BranchList
         branches={data.getTree.branches}
